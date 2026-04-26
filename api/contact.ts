@@ -52,8 +52,8 @@ export default async function handler(req: any, res: any) {
   })
 
   if (error) {
-    console.error('Resend error:', error)
-    res.status(500).json({ error: 'Échec de l\'envoi. Veuillez appeler directement.' })
+    console.error('Resend error:', JSON.stringify(error))
+    res.status(500).json({ error: 'Resend error', detail: JSON.stringify(error) })
     return
   }
 
