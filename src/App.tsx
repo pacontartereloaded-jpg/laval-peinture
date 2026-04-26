@@ -24,6 +24,8 @@ import {
   type SeoPageDef,
 } from './i18n'
 
+const DIRECT_FR_PATHS = ['/peinture-interieure-laval', '/peinture-exterieure-laval', '/soumission-peinture-laval']
+
 const COMPANY_NAME = 'Peinture Laval'
 const PHONE_NUMBER = '(450) 367-5637'
 const PHONE_LINK = 'tel:+14503675637'
@@ -53,31 +55,32 @@ const useT = (): Translations => translations[useLocale()]
 
 function App() {
   const pathname = window.location.pathname
-  const locale = detectLocale(pathname) ?? 'fr'
-  const localPath = stripLocale(pathname)
+  const isDirectFr = DIRECT_FR_PATHS.includes(pathname)
+  const locale = isDirectFr ? 'fr' : (detectLocale(pathname) ?? 'fr')
+  const localPath = isDirectFr ? pathname : stripLocale(pathname)
   const t = translations[locale]
   const page = t.seoPages.find((p) => p.path === localPath)
   const metaTitle = page?.title ?? `${COMPANY_NAME} | ${t.hero.h1}`
   const metaDescription = page?.description ?? t.hero.description
 
   useEffect(() => {
-    if (!detectLocale(pathname)) {
+    if (!detectLocale(pathname) && !isDirectFr) {
       window.location.replace('/fr/')
       return
     }
     document.title = metaTitle
     setMeta('description', metaDescription)
     setMeta('keywords', page?.keywords.join(', ') ?? '')
-  }, [metaTitle, metaDescription, page, pathname])
+  }, [metaTitle, metaDescription, page, pathname, isDirectFr])
 
-  if (!detectLocale(pathname)) return null
+  if (!detectLocale(pathname) && !isDirectFr) return null
 
   return (
     <LocaleCtx.Provider value={locale}>
       <main className="min-h-screen bg-neutral-950 text-white">
         <Schema page={page} />
         <Nav />
-        {page ? <SeoLandingPage page={page} /> : <HomePage />}
+        {page?.path === '/soumission-peinture-laval' ? <SoumissionPage page={page} /> : page ? <SeoLandingPage page={page} /> : <HomePage />}
         <MobileCallButton />
       </main>
     </LocaleCtx.Provider>
@@ -781,6 +784,42 @@ function SeoLandingPage({ page }: { page: SeoPageDef }) {
       <PricingSection />
       <FaqSection />
       <ContactSection />
+    </>
+  )
+}
+
+function SoumissionPage({ page }: { page: SeoPageDef }) {
+  const t = useT()
+  return (
+    <>
+      <section className="bg-neutral-950 px-4 pb-14 pt-32 text-white sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-400">{page.eyebrow}</p>
+          <h1 className="mt-4 max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl">{page.h1}</h1>
+          <p className="mt-6 max-w-2xl text-xl leading-9 text-neutral-200">{page.intro}</p>
+        </div>
+      </section>
+      <section className="bg-neutral-950 px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+          <div className="space-y-6">
+            {page.sections.map((section) => (
+              <article key={section.heading} className="rounded-[2rem] border border-white/10 bg-white/5 p-7">
+                <h2 className="text-2xl font-black tracking-tight text-white">{section.heading}</h2>
+                <p className="mt-3 leading-8 text-neutral-300">{section.body}</p>
+              </article>
+            ))}
+            <div className="rounded-[2rem] border border-blue-500/30 bg-blue-900/30 p-7">
+              <ShieldCheck className="h-10 w-10 text-blue-400" />
+              <h2 className="mt-4 text-2xl font-black">{t.seoLanding.trustCard.h2}</h2>
+              <p className="mt-3 leading-8 text-neutral-200">{t.seoLanding.trustCard.description}</p>
+              <PhoneBar />
+            </div>
+          </div>
+          <ContactForm />
+        </div>
+      </section>
+      <WhyChooseSection />
+      <FaqSection />
     </>
   )
 }

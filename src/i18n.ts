@@ -383,6 +383,20 @@ const fr: Translations = {
       keywords: ['peintre sainte-dorothée', 'peinture sainte-dorothée', 'peintre sainte dorothee'],
       area: 'Sainte-Dorothée',
     },
+    {
+      path: '/soumission-peinture-laval',
+      title: 'Soumission Peinture Laval | Gratuite en 24h — Peinture Laval',
+      h1: 'Demandez votre soumission de peinture gratuite à Laval',
+      eyebrow: 'Réponse garantie en 24h',
+      description: 'Obtenez une soumission gratuite pour vos travaux de peinture à Laval. Intérieur, extérieur, résidentiel. Pas d\'engagement, réponse en 24h.',
+      intro: 'Décrivez votre projet et recevez une soumission détaillée en 24h. Notre équipe évalue vos surfaces, les travaux requis et vous remet un prix clair sans frais cachés.',
+      sections: [
+        { heading: 'Comment fonctionne notre processus', body: 'Remplissez le formulaire ci-dessous. Nous vous contactons dans les 24h pour préciser les détails, visiter si nécessaire et vous remettre une soumission écrite complète. Pas d\'engagement avant que vous soyez prêt.' },
+        { heading: 'Ce qui est inclus dans votre soumission', body: 'La soumission couvre les surfaces concernées, la préparation requise, le nombre de couches, les produits utilisés, les délais estimés et le prix total. Aucune mauvaise surprise à la fin des travaux.' },
+      ],
+      keywords: ['soumission peinture laval', 'estimation peinture laval', 'prix peinture laval', 'soumission gratuite peinture'],
+      area: 'Laval',
+    },
   ],
 }
 
