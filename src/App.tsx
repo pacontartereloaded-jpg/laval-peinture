@@ -667,12 +667,18 @@ function ContactForm() {
     e.preventDefault()
     setStatus('sending')
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          access_key: '900ee076-e36c-4e43-aa30-95e1419f0141',
+          subject: `Nouvelle soumission — ${form.name}`,
+          from_name: form.name,
+          ...form,
+        }),
       })
-      setStatus(res.ok ? 'success' : 'error')
+      const data = await res.json()
+      setStatus(data.success ? 'success' : 'error')
     } catch {
       setStatus('error')
     }
