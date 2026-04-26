@@ -27,6 +27,12 @@ import { blogByPath, richPageByPath, type BlogPost, type RichServicePage as Rich
 
 const DIRECT_FR_PATHS = ['/peinture-interieure-laval', '/peinture-exterieure-laval', '/soumission-peinture-laval']
 
+const SERVICE_PATHS: Record<Locale, { interior: string; exterior: string; quote: string; blog: string }> = {
+  fr: { interior: '/peinture-interieure-laval', exterior: '/peinture-exterieure-laval', quote: '/soumission-peinture-laval', blog: '/combien-coute-repeindre-maison-laval' },
+  en: { interior: '/interior-painting-laval', exterior: '/exterior-painting-laval', quote: '/quote-painting-laval', blog: '/house-painting-cost-laval' },
+  es: { interior: '/pintura-interior-laval', exterior: '/pintura-exterior-laval', quote: '/cotizacion-pintura-laval', blog: '/cuanto-cuesta-pintar-casa-laval' },
+}
+
 const COMPANY_NAME = 'Peinture Laval'
 const PHONE_NUMBER = '(450) 367-5637'
 const PHONE_LINK = 'tel:+14503675637'
@@ -91,6 +97,7 @@ function App() {
          seoPage?.template === 'quote' ? <SoumissionPage page={seoPage} /> :
          seoPage ? <SeoLandingPage page={seoPage} /> :
          <HomePage />}
+        <Footer />
         <MobileCallButton />
       </main>
     </LocaleCtx.Provider>
@@ -224,6 +231,25 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
 
 function Hero() {
   const t = useT()
+  const locale = useLocale()
+  const sp = SERVICE_PATHS[locale]
+  const heroLinks = ({
+    fr: [
+      { href: withLocale(locale, sp.interior), label: 'Peinture intérieure à Laval' },
+      { href: withLocale(locale, sp.exterior), label: 'Peinture extérieure à Laval' },
+      { href: withLocale(locale, sp.quote), label: 'Obtenir une soumission gratuite' },
+    ],
+    en: [
+      { href: withLocale(locale, sp.interior), label: 'Interior painting in Laval' },
+      { href: withLocale(locale, sp.exterior), label: 'Exterior painting in Laval' },
+      { href: withLocale(locale, sp.quote), label: 'Get a free estimate' },
+    ],
+    es: [
+      { href: withLocale(locale, sp.interior), label: 'Pintura interior en Laval' },
+      { href: withLocale(locale, sp.exterior), label: 'Pintura exterior en Laval' },
+      { href: withLocale(locale, sp.quote), label: 'Obtener presupuesto gratuito' },
+    ],
+  } as const)[locale]
 
   return (
     <section id="accueil" className="relative isolate overflow-hidden bg-neutral-950 pb-16 lg:pb-20">
@@ -245,6 +271,13 @@ function Hero() {
         <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.18 }} className="mx-auto mt-6 max-w-2xl text-lg font-medium leading-8 text-neutral-100 sm:text-xl">
           {t.hero.description}
         </motion.p>
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.24 }} className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2">
+          {heroLinks.map((l) => (
+            <a key={l.href} href={l.href} className="text-sm font-semibold text-blue-300 underline underline-offset-2 transition hover:text-blue-200">
+              {l.label}
+            </a>
+          ))}
+        </motion.div>
         <HeroButtons />
         <PhoneBar />
       </div>
@@ -447,6 +480,8 @@ function InteriorSection() {
 
 function ExteriorSection() {
   const t = useT()
+  const locale = useLocale()
+  const extCta = locale === 'fr' ? 'En savoir plus sur la peinture extérieure →' : locale === 'en' ? 'Learn more about exterior painting →' : 'Saber más sobre pintura exterior →'
 
   return (
     <section id="exterieur" className="bg-stone-950 px-4 py-16 text-white sm:px-6 lg:px-8">
@@ -465,6 +500,9 @@ function ExteriorSection() {
           <ShieldCheck className="h-12 w-12" />
           <h3 className="mt-5 text-3xl font-black tracking-tight">{t.exterior.card.h3}</h3>
           <p className="mt-3 text-lg font-semibold leading-8">{t.exterior.card.description}</p>
+          <a href={withLocale(locale, SERVICE_PATHS[locale].exterior)} className="mt-5 inline-flex items-center font-black text-white underline underline-offset-2 transition hover:text-blue-200">
+            {extCta}
+          </a>
         </div>
       </div>
     </section>
@@ -550,6 +588,8 @@ function ProjectsSection() {
 
 function PricingSection() {
   const t = useT()
+  const locale = useLocale()
+  const blogLabel = locale === 'fr' ? 'Guide complet : coût pour repeindre une maison à Laval →' : locale === 'en' ? 'Full guide: house painting cost in Laval →' : 'Guía completa: costo de pintar una casa en Laval →'
 
   return (
     <section className="bg-neutral-950 px-4 py-16 text-white sm:px-6 lg:px-8">
@@ -560,6 +600,9 @@ function PricingSection() {
           {t.pricing.paragraphs.map((p, i) => (
             <p key={i} className="mt-4 text-lg leading-8 text-neutral-200">{p}</p>
           ))}
+          <a href={withLocale(locale, SERVICE_PATHS[locale].blog)} className="mt-5 inline-flex items-center text-sm font-bold text-blue-400 underline underline-offset-2 transition hover:text-blue-300">
+            {blogLabel}
+          </a>
         </div>
         <div className="rounded-[2rem] border border-blue-500/30 bg-blue-800 p-7 text-white shadow-2xl shadow-black/30">
           <h3 className="text-3xl font-black tracking-tight">{t.pricing.card.h3}</h3>
@@ -601,6 +644,26 @@ function ReviewsSection() {
 
 function FaqSection() {
   const t = useT()
+  const locale = useLocale()
+  const sp = SERVICE_PATHS[locale]
+  const seeAlsoLabel = locale === 'fr' ? 'Voir aussi :' : locale === 'en' ? 'See also:' : 'Ver también:'
+  const faqLinks = ({
+    fr: [
+      { href: withLocale(locale, sp.interior), label: 'Peinture intérieure à Laval' },
+      { href: withLocale(locale, sp.exterior), label: 'Peinture extérieure à Laval' },
+      { href: withLocale(locale, sp.quote), label: 'Soumission gratuite en 24h' },
+    ],
+    en: [
+      { href: withLocale(locale, sp.interior), label: 'Interior painting in Laval' },
+      { href: withLocale(locale, sp.exterior), label: 'Exterior painting in Laval' },
+      { href: withLocale(locale, sp.quote), label: 'Free estimate in 24h' },
+    ],
+    es: [
+      { href: withLocale(locale, sp.interior), label: 'Pintura interior en Laval' },
+      { href: withLocale(locale, sp.exterior), label: 'Pintura exterior en Laval' },
+      { href: withLocale(locale, sp.quote), label: 'Presupuesto gratuito en 24h' },
+    ],
+  } as const)[locale]
 
   return (
     <section className="bg-stone-100 px-4 py-16 text-neutral-950 sm:px-6 lg:px-8">
@@ -612,6 +675,14 @@ function FaqSection() {
               <summary className="cursor-pointer text-xl font-black">{faq.question}</summary>
               <p className="mt-4 text-lg leading-8 text-neutral-700">{faq.answer}</p>
             </details>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <span className="text-sm font-black text-neutral-500">{seeAlsoLabel}</span>
+          {faqLinks.map((link) => (
+            <a key={link.href} href={link.href} className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-bold text-blue-700 shadow-sm transition hover:bg-blue-50">
+              {link.label}
+            </a>
           ))}
         </div>
       </div>
@@ -804,6 +875,7 @@ function SoumissionPage({ page }: { page: SeoPageDef }) {
     <>
       <section className="bg-neutral-950 px-4 pb-14 pt-32 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
+          <Breadcrumb crumbs={[{ label: page.eyebrow }]} />
           <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-400">{page.eyebrow}</p>
           <h1 className="mt-4 max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl">{page.h1}</h1>
           <p className="mt-6 max-w-2xl text-xl leading-9 text-neutral-200">{page.intro}</p>
@@ -893,6 +965,7 @@ function BlogPage({ post, locale }: { post: BlogPost; locale: string }) {
     <>
       <section className="bg-neutral-950 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
+          <Breadcrumb crumbs={[{ label: locale === 'fr' ? 'Guide de prix' : locale === 'en' ? 'Pricing guide' : 'Guía de precios' }]} />
           <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-400">Peinture Laval</p>
           <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">{post.h1}</h1>
           <p className="mt-6 text-xl leading-9 text-neutral-300">{post.lead}</p>
@@ -943,6 +1016,7 @@ function BlogPage({ post, locale }: { post: BlogPost; locale: string }) {
         </div>
       </section>
 
+      <RelatedServices excludePath={post.path} />
       <section className="bg-blue-950 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-start">
           <div>
@@ -979,6 +1053,7 @@ function RichServicePageComponent({ page, locale }: { page: RichServicePageData;
       <section className="bg-neutral-950 px-4 pb-14 pt-32 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.42fr] lg:items-center">
           <div>
+            <Breadcrumb crumbs={[{ label: page.eyebrow }]} />
             <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-400">{page.eyebrow}</p>
             <h1 className="mt-4 text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl">{page.h1}</h1>
             <p className="mt-6 max-w-2xl text-xl leading-9 text-neutral-200">{page.lead}</p>
@@ -1049,6 +1124,7 @@ function RichServicePageComponent({ page, locale }: { page: RichServicePageData;
         </div>
       </section>
 
+      <RelatedServices excludePath={page.path} />
       <section className="bg-blue-950 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-start">
           <div>
@@ -1060,6 +1136,201 @@ function RichServicePageComponent({ page, locale }: { page: RichServicePageData;
         </div>
       </section>
     </>
+  )
+}
+
+function Breadcrumb({ crumbs }: { crumbs: { label: string; href?: string }[] }) {
+  const locale = useLocale()
+  const homeLabel = locale === 'fr' ? 'Accueil' : locale === 'en' ? 'Home' : 'Inicio'
+  const allCrumbs = [{ label: homeLabel, href: withLocale(locale, '/') }, ...crumbs]
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: allCrumbs.map((crumb, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: crumb.label,
+      ...(crumb.href ? { item: `https://peinturelaval.ca${crumb.href}` } : {}),
+    })),
+  }
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <nav aria-label={locale === 'fr' ? "Fil d'Ariane" : locale === 'en' ? 'Breadcrumb' : 'Ruta de navegación'} className="mb-6">
+        <ol className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-neutral-500">
+          {allCrumbs.map((crumb, i) => (
+            <li key={i} className="flex items-center gap-1.5">
+              {i > 0 && <span aria-hidden="true" className="text-neutral-700">›</span>}
+              {crumb.href ? (
+                <a href={crumb.href} className="transition hover:text-blue-400">{crumb.label}</a>
+              ) : (
+                <span className="text-white">{crumb.label}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </>
+  )
+}
+
+function RelatedServices({ excludePath }: { excludePath: string }) {
+  const locale = useLocale()
+  const sp = SERVICE_PATHS[locale]
+
+  const allLinks = ({
+    fr: [
+      { href: withLocale(locale, sp.interior), label: 'Peinture intérieure à Laval', desc: 'Murs, plafonds, moulures et finition premium' },
+      { href: withLocale(locale, sp.exterior), label: 'Peinture extérieure à Laval', desc: 'Façades, boiseries, portes et revêtements' },
+      { href: withLocale(locale, sp.quote), label: 'Obtenir une soumission gratuite', desc: 'Réponse garantie en 24h, sans frais' },
+      { href: withLocale(locale, sp.blog), label: 'Coût pour repeindre une maison à Laval', desc: 'Guide de prix et estimations détaillées' },
+    ],
+    en: [
+      { href: withLocale(locale, sp.interior), label: 'Interior painting in Laval', desc: 'Walls, ceilings, moldings and premium finishing' },
+      { href: withLocale(locale, sp.exterior), label: 'Exterior painting in Laval', desc: 'Facades, woodwork, doors and siding' },
+      { href: withLocale(locale, sp.quote), label: 'Get a free estimate', desc: 'Response guaranteed within 24h, no fee' },
+      { href: withLocale(locale, sp.blog), label: 'House painting cost in Laval', desc: 'Pricing guide and detailed estimates' },
+    ],
+    es: [
+      { href: withLocale(locale, sp.interior), label: 'Pintura interior en Laval', desc: 'Paredes, techos, molduras y acabados premium' },
+      { href: withLocale(locale, sp.exterior), label: 'Pintura exterior en Laval', desc: 'Fachadas, carpintería, puertas y revestimientos' },
+      { href: withLocale(locale, sp.quote), label: 'Obtener presupuesto gratuito', desc: 'Respuesta garantizada en 24h, sin coste' },
+      { href: withLocale(locale, sp.blog), label: 'Costo de pintar una casa en Laval', desc: 'Guía de precios y estimaciones detalladas' },
+    ],
+  } as const)[locale]
+
+  const heading = locale === 'fr' ? 'Services connexes' : locale === 'en' ? 'Related services' : 'Servicios relacionados'
+  const links = allLinks.filter((l) => !l.href.includes(excludePath))
+
+  return (
+    <section className="border-t border-white/10 bg-neutral-950 px-4 py-14 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="text-2xl font-black tracking-tight text-white sm:text-3xl">{heading}</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {links.map((link) => (
+            <a key={link.href} href={link.href} className="group rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:border-blue-500/40 hover:bg-white/10">
+              <p className="font-black text-white transition group-hover:text-blue-300">{link.label}</p>
+              <p className="mt-1 text-sm text-neutral-400">{link.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Footer() {
+  const locale = useLocale()
+  const sp = SERVICE_PATHS[locale]
+
+  const content = ({
+    fr: {
+      servicesLabel: 'Services',
+      areasLabel: 'Secteurs desservis',
+      services: [
+        { href: withLocale(locale, '/'), label: 'Peintre Laval' },
+        { href: withLocale(locale, sp.interior), label: 'Peinture intérieure Laval' },
+        { href: withLocale(locale, sp.exterior), label: 'Peinture extérieure Laval' },
+        { href: withLocale(locale, sp.quote), label: 'Soumission peinture Laval' },
+        { href: withLocale(locale, sp.blog), label: 'Prix peinture Laval' },
+        { href: withLocale(locale, '/peinture-residentielle-laval'), label: 'Peinture résidentielle Laval' },
+      ],
+      areas: [
+        { href: withLocale(locale, '/peintre-chomedey'), label: 'Peintre Chomedey' },
+        { href: withLocale(locale, '/peintre-vimont'), label: 'Peintre Vimont' },
+        { href: withLocale(locale, '/peinture-sainte-dorothee'), label: 'Peintre Sainte-Dorothée' },
+        { href: withLocale(locale, '/peintre-laval'), label: 'Peintre à Laval' },
+      ],
+      tagline: 'Service de peinture résidentielle à Laval, Chomedey, Vimont et Sainte-Dorothée.',
+      copyright: `© ${new Date().getFullYear()} Peinture Laval. Tous droits réservés.`,
+    },
+    en: {
+      servicesLabel: 'Services',
+      areasLabel: 'Areas served',
+      services: [
+        { href: withLocale(locale, '/'), label: 'Painter Laval' },
+        { href: withLocale(locale, sp.interior), label: 'Interior Painting Laval' },
+        { href: withLocale(locale, sp.exterior), label: 'Exterior Painting Laval' },
+        { href: withLocale(locale, sp.quote), label: 'Painting Quote Laval' },
+        { href: withLocale(locale, sp.blog), label: 'Painting Cost Laval' },
+        { href: withLocale(locale, '/residential-painting-laval'), label: 'Residential Painting Laval' },
+      ],
+      areas: [
+        { href: withLocale(locale, '/painter-chomedey'), label: 'Painter Chomedey' },
+        { href: withLocale(locale, '/painter-vimont'), label: 'Painter Vimont' },
+        { href: withLocale(locale, '/painting-sainte-dorothee'), label: 'Painter Sainte-Dorothée' },
+        { href: withLocale(locale, '/painter-laval'), label: 'Painter in Laval' },
+      ],
+      tagline: 'Residential painting service in Laval, Chomedey, Vimont and Sainte-Dorothée.',
+      copyright: `© ${new Date().getFullYear()} Peinture Laval. All rights reserved.`,
+    },
+    es: {
+      servicesLabel: 'Servicios',
+      areasLabel: 'Sectores atendidos',
+      services: [
+        { href: withLocale(locale, '/'), label: 'Pintor Laval' },
+        { href: withLocale(locale, sp.interior), label: 'Pintura Interior Laval' },
+        { href: withLocale(locale, sp.exterior), label: 'Pintura Exterior Laval' },
+        { href: withLocale(locale, sp.quote), label: 'Cotización Pintura Laval' },
+        { href: withLocale(locale, sp.blog), label: 'Precio Pintura Laval' },
+        { href: withLocale(locale, '/pintura-residencial-laval'), label: 'Pintura Residencial Laval' },
+      ],
+      areas: [
+        { href: withLocale(locale, '/pintor-chomedey'), label: 'Pintor Chomedey' },
+        { href: withLocale(locale, '/pintor-vimont'), label: 'Pintor Vimont' },
+        { href: withLocale(locale, '/pintura-sainte-dorothee'), label: 'Pintor Sainte-Dorothée' },
+        { href: withLocale(locale, '/pintor-laval'), label: 'Pintor en Laval' },
+      ],
+      tagline: 'Servicio de pintura residencial en Laval, Chomedey, Vimont y Sainte-Dorothée.',
+      copyright: `© ${new Date().getFullYear()} Peinture Laval. Todos los derechos reservados.`,
+    },
+  } as const)[locale]
+
+  return (
+    <footer className="border-t border-white/10 bg-neutral-950 px-4 pb-8 pt-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <a href={withLocale(locale, '/')} className="mb-4 flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl">
+                <img src="/logos/logo.png" alt="" className="h-full w-full object-contain" aria-hidden="true" />
+              </span>
+              <span className="text-lg font-black text-white">{COMPANY_NAME}</span>
+            </a>
+            <p className="text-sm leading-6 text-neutral-400">{content.tagline}</p>
+            <a href={PHONE_LINK} className="mt-4 inline-flex items-center gap-2 font-black text-blue-400 transition hover:text-blue-300">
+              <Phone className="h-4 w-4" />
+              {PHONE_NUMBER}
+            </a>
+          </div>
+          <div>
+            <h3 className="mb-4 text-xs font-black uppercase tracking-widest text-blue-400">{content.servicesLabel}</h3>
+            <ul className="space-y-2">
+              {content.services.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-sm font-semibold text-neutral-300 transition hover:text-white">{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-4 text-xs font-black uppercase tracking-widest text-blue-400">{content.areasLabel}</h3>
+            <ul className="space-y-2">
+              {content.areas.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-sm font-semibold text-neutral-300 transition hover:text-white">{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-neutral-500">
+          {content.copyright}
+        </div>
+      </div>
+    </footer>
   )
 }
 
