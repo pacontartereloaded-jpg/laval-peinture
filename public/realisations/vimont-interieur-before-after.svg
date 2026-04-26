@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Avant après peinture maison à Vimont Laval">
+  <defs>
+    <linearGradient id="old" x1="0" x2="1"><stop stop-color="#9c8b7b"/><stop offset="1" stop-color="#b2a090"/></linearGradient>
+    <linearGradient id="new" x1="0" x2="1"><stop stop-color="#e7e1d7"/><stop offset="1" stop-color="#f5f1ea"/></linearGradient>
+    <linearGradient id="counter" x1="0" x2="1"><stop stop-color="#3f3a35"/><stop offset="1" stop-color="#5b5148"/></linearGradient>
+  </defs>
+  <rect width="600" height="900" fill="url(#old)"/>
+  <rect x="600" width="600" height="900" fill="url(#new)"/>
+  <rect y="610" width="1200" height="290" fill="#8a5c3c"/>
+  <rect x="80" y="210" width="390" height="250" rx="10" fill="#d8cab4" opacity=".75"/>
+  <rect x="730" y="205" width="390" height="255" rx="10" fill="#ffffff" opacity=".9"/>
+  <rect x="55" y="520" width="470" height="115" rx="10" fill="url(#counter)"/>
+  <rect x="675" y="520" width="470" height="115" rx="10" fill="#f8f5ee"/>
+  <rect x="115" y="455" width="95" height="90" fill="#7a685b"/>
+  <rect x="760" y="455" width="95" height="90" fill="#ffffff"/>
+  <rect x="235" y="455" width="95" height="90" fill="#7a685b"/>
+  <rect x="880" y="455" width="95" height="90" fill="#ffffff"/>
+  <path d="M598 0v900" stroke="#111" stroke-width="8" opacity=".55"/>
+  <text x="300" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#fff" opacity=".9">AVANT</text>
+  <text x="900" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#1f2937" opacity=".85">APRÈS</text>
+</svg>

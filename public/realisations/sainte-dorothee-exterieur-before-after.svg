@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Avant après peinture extérieure à Sainte-Dorothée Laval">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#cbd5df"/><stop offset="1" stop-color="#edf2f5"/></linearGradient>
+    <linearGradient id="oldSiding" x1="0" x2="1"><stop stop-color="#9c9588"/><stop offset="1" stop-color="#b5ad9f"/></linearGradient>
+    <linearGradient id="newSiding" x1="0" x2="1"><stop stop-color="#d9d5cc"/><stop offset="1" stop-color="#ece8df"/></linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#sky)"/>
+  <rect y="650" width="1200" height="250" fill="#6f8d5b"/>
+  <rect x="70" y="360" width="430" height="290" fill="url(#oldSiding)"/>
+  <path d="M45 360l240-170 240 170z" fill="#6f655d"/>
+  <rect x="700" y="355" width="430" height="295" fill="url(#newSiding)"/>
+  <path d="M675 355l240-170 240 170z" fill="#4f4740"/>
+  <rect x="235" y="495" width="86" height="155" fill="#6d5142"/>
+  <rect x="865" y="495" width="86" height="155" fill="#2f4b5f"/>
+  <rect x="115" y="430" width="95" height="82" fill="#e5e0d6" opacity=".7"/>
+  <rect x="355" y="430" width="95" height="82" fill="#e5e0d6" opacity=".7"/>
+  <rect x="745" y="428" width="95" height="84" fill="#ffffff" opacity=".9"/>
+  <rect x="985" y="428" width="95" height="84" fill="#ffffff" opacity=".9"/>
+  <path d="M598 0v900" stroke="#111" stroke-width="8" opacity=".45"/>
+  <text x="300" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#fff" opacity=".9">AVANT</text>
+  <text x="900" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#1f2937" opacity=".85">APRÈS</text>
+</svg>
