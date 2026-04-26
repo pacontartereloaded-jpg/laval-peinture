@@ -134,8 +134,6 @@ function Nav() {
 
 function HomePage() {
   const t = useT()
-  const locale = useLocale()
-  const link = (path: string) => withLocale(locale, path)
 
   return (
     <>
@@ -213,8 +211,6 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
 
 function Hero() {
   const t = useT()
-  const locale = useLocale()
-  const link = (path: string) => withLocale(locale, path)
 
   return (
     <section id="accueil" className="relative isolate overflow-hidden bg-neutral-950 pb-16 lg:pb-20">
@@ -653,7 +649,6 @@ function ContactSection() {
 
 function SeoLandingPage({ page }: { page: SeoPageDef }) {
   const t = useT()
-  const locale = useLocale()
 
   return (
     <>
