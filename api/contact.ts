@@ -24,7 +24,7 @@ export default async function handler(req: any, res: any) {
   const resend = new Resend(apiKey)
 
   const { error } = await resend.emails.send({
-    from: 'Peinture Laval <noreply@peinturelaval.ca>',
+    from: 'Peinture Laval <onboarding@resend.dev>',
     to: [CONTACT_EMAIL],
     replyTo: email.trim(),
     subject: `Nouvelle soumission — ${name.trim()}`,
