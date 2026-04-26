@@ -80,7 +80,7 @@ function App() {
       <main className="min-h-screen bg-neutral-950 text-white">
         <Schema page={page} />
         <Nav />
-        {page?.path === '/soumission-peinture-laval' ? <SoumissionPage page={page} /> : page ? <SeoLandingPage page={page} /> : <HomePage />}
+        {page?.template === 'quote' ? <SoumissionPage page={page} /> : page ? <SeoLandingPage page={page} /> : <HomePage />}
         <MobileCallButton />
       </main>
     </LocaleCtx.Provider>

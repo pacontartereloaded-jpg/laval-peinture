@@ -31,6 +31,7 @@ export type SeoPageDef = {
   sections: { heading: string; body: string }[]
   keywords: string[]
   area?: string
+  template?: 'quote'
 }
 
 export type Translations = {
@@ -396,6 +397,7 @@ const fr: Translations = {
       ],
       keywords: ['soumission peinture laval', 'estimation peinture laval', 'prix peinture laval', 'soumission gratuite peinture'],
       area: 'Laval',
+      template: 'quote',
     },
   ],
 }
@@ -642,6 +644,21 @@ const en: Translations = {
       keywords: ['painter sainte-dorothee', 'painting sainte-dorothee', 'residential painter sainte-dorothee'],
       area: 'Sainte-Dorothée',
     },
+    {
+      path: '/quote-painting-laval',
+      title: 'Free Painting Quote Laval | Peinture Laval',
+      h1: 'Get a free painting quote in Laval',
+      eyebrow: 'Response guaranteed within 24h',
+      description: 'Get a free quote for your painting project in Laval. Interior, exterior, residential. No commitment — response within 24h.',
+      intro: 'Describe your project and receive a detailed quote within 24h. Our team evaluates your surfaces, the required work, and gives you a clear price with no hidden fees.',
+      sections: [
+        { heading: 'How our process works', body: 'Fill out the form below. We contact you within 24h to clarify details, visit if needed, and provide a complete written quote. No commitment until you are ready to proceed.' },
+        { heading: 'What is included in your quote', body: 'The quote covers the surfaces involved, required preparation, number of coats, products used, estimated timelines and the total price. No unpleasant surprises at the end of the project.' },
+      ],
+      keywords: ['painting quote laval', 'painting estimate laval', 'painting price laval', 'free quote painting'],
+      area: 'Laval',
+      template: 'quote',
+    },
   ],
 }
 
@@ -886,6 +903,21 @@ const es: Translations = {
       ],
       keywords: ['pintor sainte-dorothee', 'pintura sainte-dorothee', 'pintor residencial sainte-dorothee'],
       area: 'Sainte-Dorothée',
+    },
+    {
+      path: '/cotizacion-pintura-laval',
+      title: 'Cotización Pintura Laval Gratis | Peinture Laval',
+      h1: 'Solicite su cotización de pintura gratuita en Laval',
+      eyebrow: 'Respuesta garantizada en 24h',
+      description: 'Obtenga una cotización gratuita para sus trabajos de pintura en Laval. Interior, exterior, residencial. Sin compromiso, respuesta en 24h.',
+      intro: 'Describa su proyecto y reciba una cotización detallada en 24h. Nuestro equipo evalúa sus superficies, los trabajos necesarios y le entrega un precio claro sin costes ocultos.',
+      sections: [
+        { heading: 'Cómo funciona nuestro proceso', body: 'Complete el formulario a continuación. Le contactamos en 24h para precisar los detalles, visitar si es necesario y entregarle una cotización escrita completa. Sin compromiso hasta que esté listo para proceder.' },
+        { heading: 'Qué incluye su cotización', body: 'La cotización cubre las superficies involucradas, la preparación necesaria, el número de capas, los productos utilizados, los plazos estimados y el precio total. Sin sorpresas desagradables al final de los trabajos.' },
+      ],
+      keywords: ['cotizacion pintura laval', 'presupuesto pintura laval', 'precio pintura laval', 'cotizacion gratis pintura'],
+      area: 'Laval',
+      template: 'quote',
     },
   ],
 }
