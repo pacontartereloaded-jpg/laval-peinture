@@ -23,6 +23,7 @@ import {
   type Translations,
   type SeoPageDef,
 } from './i18n'
+import { blogByPath, richPageByPath, type BlogPost, type RichServicePage as RichServicePageData } from './content'
 
 const DIRECT_FR_PATHS = ['/peinture-interieure-laval', '/peinture-exterieure-laval', '/soumission-peinture-laval']
 
@@ -59,9 +60,14 @@ function App() {
   const locale = isDirectFr ? 'fr' : (detectLocale(pathname) ?? 'fr')
   const localPath = isDirectFr ? pathname : stripLocale(pathname)
   const t = translations[locale]
-  const page = t.seoPages.find((p) => p.path === localPath)
-  const metaTitle = page?.title ?? `${COMPANY_NAME} | ${t.hero.h1}`
-  const metaDescription = page?.description ?? t.hero.description
+
+  const blogPost = blogByPath[localPath]
+  const richPage = richPageByPath[localPath]
+  const seoPage = !blogPost && !richPage ? t.seoPages.find((p) => p.path === localPath) : undefined
+
+  const metaTitle = blogPost?.title ?? richPage?.title ?? seoPage?.title ?? `${COMPANY_NAME} | ${t.hero.h1}`
+  const metaDescription = blogPost?.metaDescription ?? richPage?.metaDescription ?? seoPage?.description ?? t.hero.description
+  const keywords = blogPost?.keywords ?? richPage?.keywords ?? seoPage?.keywords ?? []
 
   useEffect(() => {
     if (!detectLocale(pathname) && !isDirectFr) {
@@ -70,17 +76,21 @@ function App() {
     }
     document.title = metaTitle
     setMeta('description', metaDescription)
-    setMeta('keywords', page?.keywords.join(', ') ?? '')
-  }, [metaTitle, metaDescription, page, pathname, isDirectFr])
+    setMeta('keywords', keywords.join(', '))
+  }, [metaTitle, metaDescription, keywords, pathname, isDirectFr])
 
   if (!detectLocale(pathname) && !isDirectFr) return null
 
   return (
     <LocaleCtx.Provider value={locale}>
       <main className="min-h-screen bg-neutral-950 text-white">
-        <Schema page={page} />
+        <Schema seoPage={seoPage} blogPost={blogPost} />
         <Nav />
-        {page?.template === 'quote' ? <SoumissionPage page={page} /> : page ? <SeoLandingPage page={page} /> : <HomePage />}
+        {blogPost ? <BlogPage post={blogPost} locale={locale} /> :
+         richPage ? <RichServicePageComponent page={richPage} locale={locale} /> :
+         seoPage?.template === 'quote' ? <SoumissionPage page={seoPage} /> :
+         seoPage ? <SeoLandingPage page={seoPage} /> :
+         <HomePage />}
         <MobileCallButton />
       </main>
     </LocaleCtx.Provider>
@@ -842,16 +852,215 @@ function MobileCallButton() {
   )
 }
 
-function Schema({ page }: { page?: SeoPageDef }) {
+function Schema({ seoPage, blogPost }: { seoPage?: SeoPageDef; blogPost?: BlogPost }) {
   const locale = useLocale()
   const t = useT()
-  const url = `https://peinturelaval.ca${withLocale(locale, page?.path ?? '/')}`
-  const schema = [
-    { '@context': 'https://schema.org', '@type': ['LocalBusiness', 'HousePainter'], name: COMPANY_NAME, telephone: '+14503675637', areaServed: ['Laval', 'Chomedey', 'Sainte-Dorothée', 'Vimont'], url, address: { '@type': 'PostalAddress', addressLocality: 'Laval', addressRegion: 'QC', addressCountry: 'CA' }, priceRange: '$$' },
-    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: t.faq.items.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) },
-    ...(page ? [{ '@context': 'https://schema.org', '@type': 'Service', name: page.h1, description: page.description, provider: { '@type': 'HousePainter', name: COMPANY_NAME, telephone: '+14503675637' }, areaServed: page.area ?? 'Laval' }] : []),
+  const basePath = seoPage?.path ?? blogPost?.path ?? '/'
+  const url = `https://peinturelaval.ca${withLocale(locale, basePath)}`
+  const schema: object[] = [
+    { '@context': 'https://schema.org', '@type': ['LocalBusiness', 'HousePainter'], name: COMPANY_NAME, telephone: '+14503675637', areaServed: ['Laval', 'Chomedey', 'Sainte-Dorothée', 'Vimont'], url: 'https://peinturelaval.ca', address: { '@type': 'PostalAddress', addressLocality: 'Laval', addressRegion: 'QC', addressCountry: 'CA' }, priceRange: '$$' },
   ]
+  if (blogPost) {
+    schema.push({ '@context': 'https://schema.org', '@type': 'Article', headline: blogPost.h1, description: blogPost.metaDescription, url, author: { '@type': 'Organization', name: COMPANY_NAME }, publisher: { '@type': 'Organization', name: COMPANY_NAME } })
+    schema.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: blogPost.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) })
+  } else {
+    schema.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: t.faq.items.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) })
+    if (seoPage) schema.push({ '@context': 'https://schema.org', '@type': 'Service', name: seoPage.h1, description: seoPage.description, provider: { '@type': 'HousePainter', name: COMPANY_NAME }, areaServed: seoPage.area ?? 'Laval' })
+  }
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+}
+
+function BlogPage({ post, locale }: { post: BlogPost; locale: string }) {
+  const localeHref = (path: string) => `/${locale}${path}`
+  const serviceLinks: Record<string, { fr: string; en: string; es: string }> = {
+    interior: { fr: '/peinture-interieure-laval', en: '/interior-painting-laval', es: '/pintura-interior-laval' },
+    exterior: { fr: '/peinture-exterieure-laval', en: '/exterior-painting-laval', es: '/pintura-exterior-laval' },
+    quote: { fr: '/soumission-peinture-laval', en: '/quote-painting-laval', es: '/cotizacion-pintura-laval' },
+  }
+  const links = {
+    interior: localeHref(serviceLinks.interior[locale as 'fr' | 'en' | 'es'] ?? serviceLinks.interior.fr),
+    exterior: localeHref(serviceLinks.exterior[locale as 'fr' | 'en' | 'es'] ?? serviceLinks.exterior.fr),
+    quote: localeHref(serviceLinks.quote[locale as 'fr' | 'en' | 'es'] ?? serviceLinks.quote.fr),
+  }
+  const internalLinkLabels: Record<string, { interior: string; exterior: string; quote: string }> = {
+    fr: { interior: 'Peinture intérieure à Laval →', exterior: 'Peinture extérieure à Laval →', quote: 'Obtenez une soumission gratuite →' },
+    en: { interior: 'Interior painting in Laval →', exterior: 'Exterior painting in Laval →', quote: 'Get a free estimate →' },
+    es: { interior: 'Pintura interior en Laval →', exterior: 'Pintura exterior en Laval →', quote: 'Obtener presupuesto gratuito →' },
+  }
+  const ll = internalLinkLabels[locale] ?? internalLinkLabels.fr
+
+  return (
+    <>
+      <section className="bg-neutral-950 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-400">Peinture Laval</p>
+          <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">{post.h1}</h1>
+          <p className="mt-6 text-xl leading-9 text-neutral-300">{post.lead}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href={links.interior} className="rounded-full border border-blue-500/40 px-4 py-2 text-sm font-bold text-blue-300 transition hover:bg-blue-900/40">{ll.interior}</a>
+            <a href={links.exterior} className="rounded-full border border-blue-500/40 px-4 py-2 text-sm font-bold text-blue-300 transition hover:bg-blue-900/40">{ll.exterior}</a>
+            <a href={links.quote} className="rounded-full border border-blue-500/40 px-4 py-2 text-sm font-bold text-blue-300 transition hover:bg-blue-900/40">{ll.quote}</a>
+          </div>
+        </div>
+      </section>
+
+      <article className="bg-neutral-950 px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl space-y-12">
+          {post.sections.map((section) => (
+            <section key={section.h2}>
+              <h2 className="text-2xl font-black tracking-tight text-white sm:text-3xl">{section.h2}</h2>
+              <div className="mt-4 space-y-4">
+                {section.paragraphs.map((p, i) => (
+                  <p key={i} className="leading-8 text-neutral-300">{p}</p>
+                ))}
+              </div>
+              {section.list && (
+                <ul className="mt-5 space-y-2">
+                  {section.list.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-neutral-200">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-400" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+        </div>
+      </article>
+
+      <section className="bg-neutral-900 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl font-black tracking-tight">FAQ</h2>
+          <div className="mt-8 space-y-6">
+            {post.faq.map((item) => (
+              <div key={item.q} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h3 className="text-lg font-black text-white">{item.q}</h3>
+                <p className="mt-3 leading-7 text-neutral-300">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-blue-950 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-start">
+          <div>
+            <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">{post.ctaHeading}</h2>
+            <p className="mt-4 text-lg leading-8 text-blue-100">{post.ctaBody}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={links.interior} className="rounded-full border border-white/20 px-4 py-2 text-sm font-bold text-white/80 transition hover:bg-white/10">{ll.interior}</a>
+              <a href={links.exterior} className="rounded-full border border-white/20 px-4 py-2 text-sm font-bold text-white/80 transition hover:bg-white/10">{ll.exterior}</a>
+            </div>
+          </div>
+          <ContactForm />
+        </div>
+      </section>
+    </>
+  )
+}
+
+function RichServicePageComponent({ page, locale }: { page: RichServicePageData; locale: string }) {
+  const serviceLinks: Record<string, { fr: string; en: string; es: string }> = {
+    interior: { fr: '/fr/peinture-interieure-laval', en: '/en/interior-painting-laval', es: '/es/pintura-interior-laval' },
+    exterior: { fr: '/fr/peinture-exterieure-laval', en: '/en/exterior-painting-laval', es: '/es/pintura-exterior-laval' },
+    quote: { fr: '/fr/soumission-peinture-laval', en: '/en/quote-painting-laval', es: '/es/cotizacion-pintura-laval' },
+    blog: { fr: '/fr/combien-coute-repeindre-maison-laval', en: '/en/house-painting-cost-laval', es: '/es/cuanto-cuesta-pintar-casa-laval' },
+  }
+  const loc = locale as 'fr' | 'en' | 'es'
+  const crossLinks = [
+    { href: serviceLinks.interior[loc], label: locale === 'fr' ? 'Peinture intérieure' : locale === 'en' ? 'Interior painting' : 'Pintura interior' },
+    { href: serviceLinks.exterior[loc], label: locale === 'fr' ? 'Peinture extérieure' : locale === 'en' ? 'Exterior painting' : 'Pintura exterior' },
+    { href: serviceLinks.blog[loc], label: locale === 'fr' ? 'Prix et estimations' : locale === 'en' ? 'Costs & estimates' : 'Precios y presupuestos' },
+  ].filter((l) => !l.href.includes(page.path))
+
+  return (
+    <>
+      <section className="bg-neutral-950 px-4 pb-14 pt-32 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.42fr] lg:items-center">
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-400">{page.eyebrow}</p>
+            <h1 className="mt-4 text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl">{page.h1}</h1>
+            <p className="mt-6 max-w-2xl text-xl leading-9 text-neutral-200">{page.lead}</p>
+            <HeroButtons />
+            <PhoneBar />
+          </div>
+          <div className="space-y-3">
+            {crossLinks.map((l) => (
+              <a key={l.href} href={l.href} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm font-bold text-blue-300 transition hover:bg-white/10">
+                <Brush className="h-4 w-4 shrink-0" />{l.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-neutral-900 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black tracking-tight sm:text-4xl">{page.processHeading}</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {page.steps.map((step) => (
+              <div key={step.num} className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+                <span className="text-4xl font-black text-blue-700">{step.num}</span>
+                <h3 className="mt-3 text-lg font-black">{step.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-neutral-400">{step.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-neutral-950 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black tracking-tight sm:text-4xl">{page.benefitsHeading}</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {page.benefits.map((b) => (
+              <div key={b.title} className="rounded-[2rem] border border-white/10 bg-white/5 p-7">
+                <h3 className="text-xl font-black text-white">{b.title}</h3>
+                <p className="mt-3 leading-7 text-neutral-300">{b.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-4 py-16 text-neutral-950 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
+          {page.sections.map((s) => (
+            <article key={s.h2} className="rounded-[2rem] border border-stone-200 bg-stone-50 p-7">
+              <h2 className="text-2xl font-black tracking-tight">{s.h2}</h2>
+              <p className="mt-4 leading-8 text-neutral-700">{s.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-neutral-900 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-3xl font-black tracking-tight sm:text-4xl">FAQ</h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {page.faq.map((item) => (
+              <div key={item.q} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h3 className="font-black text-white">{item.q}</h3>
+                <p className="mt-2 text-sm leading-7 text-neutral-300">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-blue-950 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-start">
+          <div>
+            <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">{page.ctaHeading}</h2>
+            <p className="mt-4 text-lg leading-8 text-blue-100">{page.ctaBody}</p>
+            <PhoneBar />
+          </div>
+          <ContactForm />
+        </div>
+      </section>
+    </>
+  )
 }
 
 function setMeta(name: string, content: string) {
