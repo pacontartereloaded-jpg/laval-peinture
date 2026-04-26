@@ -1,64 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- ── FRANÇAIS (principal) ── -->
-  <url>
-    <loc>https://peinturelaval.ca/fr/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://peinturelaval.ca/fr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://peinturelaval.ca/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://peinturelaval.ca/es/"/>
-    <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url><loc>https://peinturelaval.ca/fr/peintre-laval</loc><priority>0.95</priority></url>
-  <url><loc>https://peinturelaval.ca/fr/peinture-interieure-laval</loc><priority>0.9</priority></url>
-  <url><loc>https://peinturelaval.ca/fr/peinture-exterieure-laval</loc><priority>0.9</priority></url>
-  <url><loc>https://peinturelaval.ca/fr/peinture-residentielle-laval</loc><priority>0.9</priority></url>
-  <url><loc>https://peinturelaval.ca/fr/soumission-peinture-laval</loc><priority>0.9</priority></url>
-  <url><loc>https://peinturelaval.ca/fr/peintre-chomedey</loc><priority>0.8</priority></url>
-  <url><loc>https://peinturelaval.ca/fr/peintre-vimont</loc><priority>0.8</priority></url>
-  <url><loc>https://peinturelaval.ca/fr/peinture-sainte-dorothee</loc><priority>0.8</priority></url>
+  <url><loc>https://peinturelaval.ca/fr/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/fr/peintre-laval</loc><priority>0.95</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/fr/peinture-interieure-laval</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/fr/peinture-exterieure-laval</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/fr/peinture-residentielle-laval</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/fr/soumission-peinture-laval</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/fr/peintre-chomedey</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/fr/peintre-vimont</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/fr/peinture-sainte-dorothee</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
 
-  <!-- ── Pages FR directes (sans préfixe /fr/) ── -->
-  <url><loc>https://peinturelaval.ca/peinture-interieure-laval</loc><priority>0.9</priority></url>
-  <url><loc>https://peinturelaval.ca/peinture-exterieure-laval</loc><priority>0.9</priority></url>
-  <url><loc>https://peinturelaval.ca/soumission-peinture-laval</loc><priority>0.9</priority></url>
+  <url><loc>https://peinturelaval.ca/peinture-interieure-laval</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/peinture-exterieure-laval</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/soumission-peinture-laval</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
 
-  <!-- ── ENGLISH ── -->
-  <url>
-    <loc>https://peinturelaval.ca/en/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://peinturelaval.ca/fr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://peinturelaval.ca/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://peinturelaval.ca/es/"/>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url><loc>https://peinturelaval.ca/en/painter-laval</loc><priority>0.85</priority></url>
-  <url><loc>https://peinturelaval.ca/en/interior-painting-laval</loc><priority>0.85</priority></url>
-  <url><loc>https://peinturelaval.ca/en/exterior-painting-laval</loc><priority>0.85</priority></url>
-  <url><loc>https://peinturelaval.ca/en/residential-painting-laval</loc><priority>0.85</priority></url>
-  <url><loc>https://peinturelaval.ca/en/quote-painting-laval</loc><priority>0.85</priority></url>
-  <url><loc>https://peinturelaval.ca/en/painter-chomedey</loc><priority>0.75</priority></url>
-  <url><loc>https://peinturelaval.ca/en/painter-vimont</loc><priority>0.75</priority></url>
-  <url><loc>https://peinturelaval.ca/en/painting-sainte-dorothee</loc><priority>0.75</priority></url>
+  <url><loc>https://peinturelaval.ca/en/</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/en/painter-laval</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/en/interior-painting-laval</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/en/exterior-painting-laval</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/en/residential-painting-laval</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/en/quote-painting-laval</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/en/painter-chomedey</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/en/painter-vimont</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/en/painting-sainte-dorothee</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
 
-  <!-- ── ESPAÑOL ── -->
-  <url>
-    <loc>https://peinturelaval.ca/es/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://peinturelaval.ca/fr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://peinturelaval.ca/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://peinturelaval.ca/es/"/>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url><loc>https://peinturelaval.ca/es/pintor-laval</loc><priority>0.75</priority></url>
-  <url><loc>https://peinturelaval.ca/es/pintura-interior-laval</loc><priority>0.75</priority></url>
-  <url><loc>https://peinturelaval.ca/es/pintura-exterior-laval</loc><priority>0.75</priority></url>
-  <url><loc>https://peinturelaval.ca/es/pintura-residencial-laval</loc><priority>0.75</priority></url>
-  <url><loc>https://peinturelaval.ca/es/cotizacion-pintura-laval</loc><priority>0.75</priority></url>
-  <url><loc>https://peinturelaval.ca/es/pintor-chomedey</loc><priority>0.65</priority></url>
-  <url><loc>https://peinturelaval.ca/es/pintor-vimont</loc><priority>0.65</priority></url>
-  <url><loc>https://peinturelaval.ca/es/pintura-sainte-dorothee</loc><priority>0.65</priority></url>
+  <url><loc>https://peinturelaval.ca/es/</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/es/pintor-laval</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/es/pintura-interior-laval</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/es/pintura-exterior-laval</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/es/pintura-residencial-laval</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/es/cotizacion-pintura-laval</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/es/pintor-chomedey</loc><priority>0.65</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/es/pintor-vimont</loc><priority>0.65</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://peinturelaval.ca/es/pintura-sainte-dorothee</loc><priority>0.65</priority><changefreq>monthly</changefreq></url>
 
 </urlset>
