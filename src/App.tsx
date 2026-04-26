@@ -611,39 +611,131 @@ function ContactSection() {
   const locale = useLocale()
 
   return (
-    <section id="contact" className="bg-neutral-950 px-4 py-12 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-8 rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/40 md:grid-cols-[1fr_auto] md:items-center lg:p-8">
-        <div>
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-blue-300">
-            <MapPin className="h-4 w-4" />
-            {t.contact.badge}
-          </div>
-          <h2 className="text-3xl font-black tracking-tight sm:text-4xl">{t.contact.h2}</h2>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-neutral-200">{t.contact.description}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {t.contact.areas.map((area) => (
-              <a key={area.label} href={withLocale(locale, area.path)} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black">
-                {area.label}
-              </a>
-            ))}
-          </div>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-3xl bg-white/10 p-4">
-              <Clock className="h-6 w-6 text-blue-400" />
-              <p className="mt-3 font-black">{t.contact.response}</p>
+    <section id="contact" className="bg-neutral-950 px-4 py-16 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+
+          {/* Info */}
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-blue-300">
+              <MapPin className="h-4 w-4" />
+              {t.contact.badge}
             </div>
-            <div className="rounded-3xl bg-white/10 p-4">
-              <CalendarCheck className="h-6 w-6 text-blue-400" />
-              <p className="mt-3 font-black">{t.contact.quote}</p>
+            <h2 className="text-3xl font-black tracking-tight sm:text-4xl">{t.contact.h2}</h2>
+            <p className="mt-4 text-lg leading-8 text-neutral-200">{t.contact.description}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {t.contact.areas.map((area) => (
+                <a key={area.label} href={withLocale(locale, area.path)} className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black transition hover:bg-white/20">
+                  {area.label}
+                </a>
+              ))}
             </div>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-3xl bg-white/10 p-4">
+                <Clock className="h-6 w-6 text-blue-400" />
+                <p className="mt-3 font-black">{t.contact.response}</p>
+              </div>
+              <div className="rounded-3xl bg-white/10 p-4">
+                <CalendarCheck className="h-6 w-6 text-blue-400" />
+                <p className="mt-3 font-black">{t.contact.quote}</p>
+              </div>
+            </div>
+            <a href={PHONE_LINK} className="mt-8 inline-flex items-center gap-3 rounded-full bg-blue-800 px-8 py-5 text-lg font-black text-white shadow-2xl shadow-blue-900/25 transition hover:bg-blue-700">
+              <Phone className="h-6 w-6" />
+              {PHONE_NUMBER}
+            </a>
           </div>
+
+          {/* Form */}
+          <ContactForm />
         </div>
-        <a href={PHONE_LINK} className="inline-flex items-center justify-center gap-3 rounded-full bg-blue-800 px-8 py-5 text-lg font-black text-white shadow-2xl shadow-blue-900/25 transition hover:bg-blue-700">
-          <Phone className="h-6 w-6" />
-          {PHONE_NUMBER}
-        </a>
       </div>
     </section>
+  )
+}
+
+function ContactForm() {
+  const t = useT()
+  const f = t.form
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [form, setForm] = useState({ name: '', email: '', phone: '', projectType: '', message: '' })
+
+  const set = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    setForm((prev) => ({ ...prev, [field]: e.target.value }))
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      setStatus(res.ok ? 'success' : 'error')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  const inputCls = 'w-full rounded-2xl border border-white/15 bg-white/8 px-4 py-3 text-white placeholder-white/30 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30'
+  const labelCls = 'mb-1.5 block text-sm font-bold text-blue-200'
+
+  if (status === 'success') {
+    return (
+      <div className="flex h-full items-center justify-center rounded-[2rem] border border-green-500/30 bg-green-500/10 p-10 text-center">
+        <div>
+          <CheckCircle2 className="mx-auto h-14 w-14 text-green-400" />
+          <p className="mt-5 text-xl font-black text-white">{f.success}</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/40 lg:p-8">
+      <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-400">{f.eyebrow}</p>
+      <h3 className="mt-2 text-2xl font-black tracking-tight">{f.h2}</h3>
+
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div>
+          <label className={labelCls}>{f.name.label} *</label>
+          <input required className={inputCls} placeholder={f.name.placeholder} value={form.name} onChange={set('name')} />
+        </div>
+        <div>
+          <label className={labelCls}>{f.email.label} *</label>
+          <input required type="email" className={inputCls} placeholder={f.email.placeholder} value={form.email} onChange={set('email')} />
+        </div>
+        <div>
+          <label className={labelCls}>{f.phone.label}</label>
+          <input type="tel" className={inputCls} placeholder={f.phone.placeholder} value={form.phone} onChange={set('phone')} />
+        </div>
+        <div>
+          <label className={labelCls}>{f.projectType.label}</label>
+          <select className={inputCls + ' bg-neutral-900'} value={form.projectType} onChange={set('projectType')}>
+            <option value="">{f.projectType.placeholder}</option>
+            {f.projectType.options.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <label className={labelCls}>{f.message.label}</label>
+        <textarea rows={4} className={inputCls + ' resize-none'} placeholder={f.message.placeholder} value={form.message} onChange={set('message')} />
+      </div>
+
+      {status === 'error' && (
+        <p className="mt-4 rounded-2xl bg-red-500/15 px-4 py-3 text-sm font-bold text-red-300">{f.error}</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === 'sending'}
+        className="mt-5 w-full rounded-full bg-blue-800 py-4 text-base font-black text-white shadow-xl transition hover:bg-blue-700 disabled:opacity-60"
+      >
+        {status === 'sending' ? f.submitting : f.submit}
+      </button>
+    </form>
   )
 }
 

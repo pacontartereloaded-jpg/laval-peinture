@@ -125,6 +125,19 @@ export type Translations = {
     trustCard: { h2: string; description: string }
   }
   slider: { before: string; after: string }
+  form: {
+    eyebrow: string
+    h2: string
+    name: { label: string; placeholder: string }
+    email: { label: string; placeholder: string }
+    phone: { label: string; placeholder: string }
+    projectType: { label: string; placeholder: string; options: string[] }
+    message: { label: string; placeholder: string }
+    submit: string
+    submitting: string
+    success: string
+    error: string
+  }
   seoPages: SeoPageDef[]
 }
 
@@ -258,6 +271,19 @@ const fr: Translations = {
     trustCard: { h2: 'Entreprise locale de confiance', description: 'Service professionnel, soumission gratuite en 24h et appel direct au (450) 367-5637.' },
   },
   slider: { before: 'Avant', after: 'Après' },
+  form: {
+    eyebrow: 'Soumission gratuite',
+    h2: 'Décrivez votre projet',
+    name: { label: 'Nom complet', placeholder: 'Jean Tremblay' },
+    email: { label: 'Courriel', placeholder: 'jean@exemple.com' },
+    phone: { label: 'Téléphone (optionnel)', placeholder: '(450) 000-0000' },
+    projectType: { label: 'Type de projet', placeholder: 'Choisir...', options: ['Peinture intérieure', 'Peinture extérieure', 'Intérieur + extérieur', 'Autre'] },
+    message: { label: 'Détails du projet (optionnel)', placeholder: 'Ex: 3 pièces à peindre, couleurs choisies...' },
+    submit: 'Envoyer la demande',
+    submitting: 'Envoi en cours...',
+    success: 'Demande envoyée ! Nous vous répondrons dans les 24h.',
+    error: 'Échec de l\'envoi. Appelez-nous directement au (450) 367-5637.',
+  },
   seoPages: [
     {
       path: '/peintre-laval',
@@ -490,6 +516,19 @@ const en: Translations = {
     trustCard: { h2: 'Trusted local company', description: 'Professional service, free estimate in 24h and direct call at (450) 367-5637.' },
   },
   slider: { before: 'Before', after: 'After' },
+  form: {
+    eyebrow: 'Free estimate',
+    h2: 'Describe your project',
+    name: { label: 'Full name', placeholder: 'John Smith' },
+    email: { label: 'Email', placeholder: 'john@example.com' },
+    phone: { label: 'Phone (optional)', placeholder: '(450) 000-0000' },
+    projectType: { label: 'Project type', placeholder: 'Choose...', options: ['Interior painting', 'Exterior painting', 'Interior + exterior', 'Other'] },
+    message: { label: 'Project details (optional)', placeholder: 'e.g. 3 rooms to paint, colours already chosen...' },
+    submit: 'Send request',
+    submitting: 'Sending...',
+    success: 'Request sent! We will get back to you within 24h.',
+    error: 'Failed to send. Please call us directly at (450) 367-5637.',
+  },
   seoPages: [
     {
       path: '/painter-laval',
@@ -722,6 +761,19 @@ const es: Translations = {
     trustCard: { h2: 'Empresa local de confianza', description: 'Servicio profesional, presupuesto gratuito en 24h y llamada directa al (450) 367-5637.' },
   },
   slider: { before: 'Antes', after: 'Después' },
+  form: {
+    eyebrow: 'Presupuesto gratuito',
+    h2: 'Describa su proyecto',
+    name: { label: 'Nombre completo', placeholder: 'Juan García' },
+    email: { label: 'Correo electrónico', placeholder: 'juan@ejemplo.com' },
+    phone: { label: 'Teléfono (opcional)', placeholder: '(450) 000-0000' },
+    projectType: { label: 'Tipo de proyecto', placeholder: 'Elegir...', options: ['Pintura interior', 'Pintura exterior', 'Interior + exterior', 'Otro'] },
+    message: { label: 'Detalles del proyecto (opcional)', placeholder: 'Ej: 3 habitaciones a pintar, colores ya elegidos...' },
+    submit: 'Enviar solicitud',
+    submitting: 'Enviando...',
+    success: 'Solicitud enviada. Le responderemos en 24h.',
+    error: 'Error al enviar. Llámenos directamente al (450) 367-5637.',
+  },
   seoPages: [
     {
       path: '/pintor-laval',
