@@ -5,7 +5,7 @@ import path from 'node:path'
 loadLocalEnv()
 
 const apiKey = process.env.GEMINI_API_KEY
-const model = process.env.GEMINI_IMAGE_MODEL ?? 'gemini-3.1-flash-image-preview'
+const model = process.env.GEMINI_IMAGE_MODEL ?? 'gemini-2.0-flash-preview-image-generation'
 
 if (!apiKey) {
   console.error('Missing GEMINI_API_KEY environment variable.')
@@ -16,11 +16,6 @@ if (!apiKey) {
 const outputDir = path.join(process.cwd(), 'public', 'realisations')
 
 const jobs = [
-  {
-    file: 'hero-residential-painting-laval.png',
-    prompt:
-      'Photorealistic hero image for a premium residential painting company website in Laval, Quebec. Bright clean luxury-but-realistic home interior, painter professionally rolling warm off-white paint on a wall, protected floors, clean tools, natural daylight, elegant suburban house, trustworthy contractor feel. No text, no logos, no exaggerated mansion, no Pinterest aesthetic, realistic local service business photography, horizontal wide website hero composition.',
-  },
   {
     file: 'hero-avant.png',
     prompt:
