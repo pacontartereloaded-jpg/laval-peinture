@@ -111,7 +111,7 @@ function Nav() {
   const link = (path: string) => withLocale(locale, path)
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[#9f1d24]/10 bg-[#fffdf8]/88 text-[#1f1b18] shadow-sm shadow-black/5 backdrop-blur-xl">
+    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[#1f5c4d]/10 bg-[#fffdf8]/88 text-[#1f1b18] shadow-sm shadow-black/5 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href={link('/')} className="flex items-center gap-3" aria-label={`${COMPANY_NAME} accueil`}>
           <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl">
@@ -119,17 +119,17 @@ function Nav() {
           </span>
           <span>
             <span className="block text-lg font-black leading-none tracking-tight sm:text-xl">{COMPANY_NAME}</span>
-            <span className="hidden text-[10px] font-bold uppercase tracking-[0.22em] text-[#9f1d24] sm:block">{t.nav.subtitle}</span>
+            <span className="hidden text-[10px] font-bold uppercase tracking-[0.22em] text-[#1f5c4d] sm:block">{t.nav.subtitle}</span>
           </span>
         </a>
         <div className="hidden items-center gap-6 text-sm font-semibold text-[#1f1b18]/75 lg:flex">
-          <a className="transition hover:text-[#9f1d24]" href={link('/')}>{t.nav.home}</a>
-          <a className="transition hover:text-[#9f1d24]" href={link('/#services')}>{t.nav.services}</a>
-          <a className="transition hover:text-[#9f1d24]" href={link(t.services.cards[0].href)}>{t.nav.interior}</a>
-          <a className="transition hover:text-[#9f1d24]" href={link(t.services.cards[1].href)}>{t.nav.exterior}</a>
-          <a className="transition hover:text-[#9f1d24]" href={link('/#realisations')}>{t.nav.projects}</a>
-          <a className="transition hover:text-[#9f1d24]" href={link('/#avis')}>{t.nav.reviews}</a>
-          <a className="transition hover:text-[#9f1d24]" href={link('/#contact')}>{t.nav.contact}</a>
+          <a className="transition hover:text-[#1f5c4d]" href={link('/')}>{t.nav.home}</a>
+          <a className="transition hover:text-[#1f5c4d]" href={link('/#services')}>{t.nav.services}</a>
+          <a className="transition hover:text-[#1f5c4d]" href={link(t.services.cards[0].href)}>{t.nav.interior}</a>
+          <a className="transition hover:text-[#1f5c4d]" href={link(t.services.cards[1].href)}>{t.nav.exterior}</a>
+          <a className="transition hover:text-[#1f5c4d]" href={link('/#realisations')}>{t.nav.projects}</a>
+          <a className="transition hover:text-[#1f5c4d]" href={link('/#avis')}>{t.nav.reviews}</a>
+          <a className="transition hover:text-[#1f5c4d]" href={link('/#contact')}>{t.nav.contact}</a>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
@@ -137,13 +137,13 @@ function Nav() {
               <a
                 key={l}
                 href={`/${l}/`}
-                className={`rounded-lg px-2 py-1 text-xs font-black uppercase transition ${locale === l ? 'bg-[#9f1d24] text-white' : 'text-[#1f1b18]/45 hover:text-[#9f1d24]'}`}
+                className={`rounded-lg px-2 py-1 text-xs font-black uppercase transition ${locale === l ? 'bg-[#1f5c4d] text-white' : 'text-[#1f1b18]/45 hover:text-[#1f5c4d]'}`}
               >
                 {LOCALE_LABELS[l]}
               </a>
             ))}
           </div>
-          <a href={PHONE_LINK} className="hidden items-center gap-2 rounded-full bg-[#9f1d24] px-5 py-3 text-sm font-black text-white shadow-xl shadow-[#9f1d24]/25 transition hover:bg-[#6f1118] sm:flex">
+          <a href={PHONE_LINK} className="hidden items-center gap-2 rounded-full bg-[#1f5c4d] px-5 py-3 text-sm font-black text-white shadow-xl shadow-[#1f5c4d]/25 transition hover:bg-[#123a32] sm:flex">
             <Phone className="h-4 w-4" />
             {t.nav.callNow}
           </a>
@@ -159,7 +159,7 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <section className="border-y border-[#9f1d24]/20 bg-[#9f1d24] px-4 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-white">
+      <section className="border-y border-[#1f5c4d]/20 bg-[#1f5c4d] px-4 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-white">
         {t.announcement}
       </section>
       <ServicesSection />
@@ -256,17 +256,17 @@ function Hero() {
     <section id="accueil" className="relative isolate overflow-hidden bg-[#f7f1e8] pb-16 text-[#1f1b18] lg:pb-20">
       <img src={HERO_IMAGE} alt="Peintre résidentiel travaillant dans une maison à Laval" className="absolute inset-0 -z-20 h-full w-full object-cover" />
       <div className="absolute inset-0 -z-10 bg-[#fffdf8]/82" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_25%,rgba(159,29,36,0.18),transparent_40%),linear-gradient(180deg,rgba(255,253,248,0.72),rgba(247,241,232,0.96))]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_25%,rgba(31,92,77,0.18),transparent_40%),linear-gradient(180deg,rgba(255,253,248,0.72),rgba(247,241,232,0.96))]" />
 
       <div className="mx-auto max-w-4xl px-4 pt-32 text-center sm:px-6 lg:px-8 lg:pt-36">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#9f1d24]/20 bg-white/80 px-4 py-2 text-sm font-bold text-[#6f1118] shadow-2xl shadow-black/10 backdrop-blur">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1f5c4d]/20 bg-white/80 px-4 py-2 text-sm font-bold text-[#123a32] shadow-2xl shadow-black/10 backdrop-blur">
           <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
           {t.hero.badge}
         </motion.div>
         <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.08 }} className="text-5xl font-black leading-[0.9] tracking-[-0.06em] text-[#1f1b18] sm:text-6xl lg:text-7xl">
           {t.hero.h1}
-          <span className="mt-4 block text-3xl leading-none tracking-[-0.04em] text-[#9f1d24] sm:text-4xl lg:text-5xl">
-            <motion.span className="inline-block rounded-3xl bg-[#9f1d24]/10 px-2 py-1 ring-1 ring-[#9f1d24]/25" animate={{ backgroundColor: ['rgba(159,29,36,0.08)', 'rgba(159,29,36,0.16)', 'rgba(159,29,36,0.08)'] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}>
+          <span className="mt-4 block text-3xl leading-none tracking-[-0.04em] text-[#1f5c4d] sm:text-4xl lg:text-5xl">
+            <motion.span className="inline-block rounded-3xl bg-[#1f5c4d]/10 px-2 py-1 ring-1 ring-[#1f5c4d]/25" animate={{ backgroundColor: ['rgba(31,92,77,0.08)', 'rgba(31,92,77,0.16)', 'rgba(31,92,77,0.08)'] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}>
               {t.hero.subheading}
             </motion.span>
           </span>
@@ -276,7 +276,7 @@ function Hero() {
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.24 }} className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2">
           {heroLinks.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-semibold text-[#9f1d24] underline underline-offset-2 transition hover:text-[#6f1118]">
+            <a key={l.href} href={l.href} className="text-sm font-semibold text-[#1f5c4d] underline underline-offset-2 transition hover:text-[#123a32]">
               {l.label}
             </a>
           ))}
@@ -291,9 +291,9 @@ function Hero() {
         transition={{ duration: 0.55, delay: 0.5 }}
         className="mx-auto mt-14 flex max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8"
       >
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#9f1d24]/35 to-transparent" />
-        <p className="text-2xl font-black uppercase tracking-[0.18em] text-[#9f1d24] sm:text-3xl">{t.hero.sliderLabel}</p>
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#9f1d24]/35 to-transparent" />
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#1f5c4d]/35 to-transparent" />
+        <p className="text-2xl font-black uppercase tracking-[0.18em] text-[#1f5c4d] sm:text-3xl">{t.hero.sliderLabel}</p>
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#1f5c4d]/35 to-transparent" />
       </motion.div>
 
       <motion.div
@@ -307,8 +307,8 @@ function Hero() {
           transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
           className="flex flex-col items-center gap-1"
         >
-          <div className="h-5 w-px bg-[#9f1d24]/60" />
-          <svg className="h-5 w-5 text-[#9f1d24]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <div className="h-5 w-px bg-[#1f5c4d]/60" />
+          <svg className="h-5 w-5 text-[#1f5c4d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>
@@ -332,11 +332,11 @@ function HeroButtons() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.28 }} className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-      <a href={PHONE_LINK} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#9f1d24] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-[#9f1d24]/30 transition hover:-translate-y-0.5 hover:bg-[#6f1118]">
+      <a href={PHONE_LINK} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#1f5c4d] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-[#1f5c4d]/30 transition hover:-translate-y-0.5 hover:bg-[#123a32]">
         <Phone className="h-6 w-6" />
         {t.hero.callButton}
       </a>
-      <a href={withLocale(locale, '/#contact')} className="inline-flex items-center justify-center rounded-full border-2 border-[#9f1d24]/70 bg-white/70 px-8 py-5 text-lg font-black text-[#6f1118] backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#9f1d24] hover:text-white">
+      <a href={withLocale(locale, '/#contact')} className="inline-flex items-center justify-center rounded-full border-2 border-[#1f5c4d]/70 bg-white/70 px-8 py-5 text-lg font-black text-[#123a32] backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#1f5c4d] hover:text-white">
         {t.hero.quoteButton}
       </a>
     </motion.div>
@@ -345,26 +345,26 @@ function HeroButtons() {
 
 function PhoneBar() {
   return (
-    <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.36 }} className="mx-auto mt-8 max-w-2xl rounded-[2rem] border border-[#9f1d24]/20 bg-white/86 p-5 shadow-2xl shadow-black/15 backdrop-blur-xl sm:p-6">
+    <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.36 }} className="mx-auto mt-8 max-w-2xl rounded-[2rem] border border-[#1f5c4d]/20 bg-white/86 p-5 shadow-2xl shadow-black/15 backdrop-blur-xl sm:p-6">
       <div className="flex flex-col items-center gap-2 text-center">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#9f1d24]">Call us now:</p>
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#1f5c4d]">Call us now:</p>
           <div className="mt-1 flex items-center gap-3">
             <motion.div
               animate={{ rotate: [0, -18, 18, -14, 14, -8, 8, 0] }}
               transition={{ duration: 0.65, repeat: Infinity, repeatDelay: 3, ease: 'easeInOut' }}
               className="shrink-0"
             >
-              <Phone className="h-8 w-8 text-[#9f1d24] sm:h-10 sm:w-10 lg:h-11 lg:w-11" />
+              <Phone className="h-8 w-8 text-[#1f5c4d] sm:h-10 sm:w-10 lg:h-11 lg:w-11" />
             </motion.div>
             <motion.a
               href={PHONE_LINK}
               className="block whitespace-nowrap text-4xl font-black tracking-tight text-[#1f1b18] sm:text-5xl lg:text-6xl"
               animate={{
                 filter: [
-                  'drop-shadow(0 0 0px rgba(159,29,36,0))',
-                  'drop-shadow(0 0 14px rgba(159,29,36,0.75))',
-                  'drop-shadow(0 0 0px rgba(159,29,36,0))',
+                  'drop-shadow(0 0 0px rgba(31,92,77,0))',
+                  'drop-shadow(0 0 14px rgba(31,92,77,0.75))',
+                  'drop-shadow(0 0 0px rgba(31,92,77,0))',
                 ],
               }}
               transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 2.2, ease: 'easeInOut' }}
@@ -393,7 +393,7 @@ function ServicesSection() {
           ))}
         </div>
         <div className="mt-12 max-w-3xl">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#9f1d24]">{t.services.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#1f5c4d]">{t.services.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.services.h2}</h2>
           <p className="mt-4 text-lg leading-8 text-neutral-700">{t.services.description}</p>
         </div>
@@ -402,7 +402,7 @@ function ServicesSection() {
             const Icon = [Brush, Home, ShieldCheck][i]
             return (
               <a key={service.title} href={withLocale(locale, service.href)} className="group rounded-[2rem] border border-stone-200 bg-white p-6 shadow-2xl shadow-stone-900/8 transition hover:-translate-y-1 hover:shadow-stone-900/15">
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1f1b18] text-[#f7f1e8] transition group-hover:bg-[#9f1d24] group-hover:text-white">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1f1b18] text-[#f7f1e8] transition group-hover:bg-[#1f5c4d] group-hover:text-white">
                   <Icon className="h-7 w-7" />
                 </span>
                 <h2 className="mt-5 text-2xl font-black tracking-tight">{service.title}</h2>
@@ -420,23 +420,23 @@ function WhyChooseSection() {
   const t = useT()
 
   return (
-    <section className="bg-[#6f1118] px-4 py-16 text-white sm:px-6 lg:px-8">
+    <section className="bg-[#123a32] px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#f4c16f]">{t.whyChoose.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#d8b66a]">{t.whyChoose.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.whyChoose.h2}</h2>
           <p className="mt-5 text-lg leading-8 text-neutral-200">{t.whyChoose.description}</p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {t.whyChoose.items.map((item) => (
               <div key={item} className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/10 p-4 font-black backdrop-blur">
-                <CheckCircle2 className="h-6 w-6 shrink-0 text-[#f4c16f]" />
+                <CheckCircle2 className="h-6 w-6 shrink-0 text-[#d8b66a]" />
                 {item}
               </div>
             ))}
           </div>
         </div>
         <div className="rounded-[2rem] border border-white/15 bg-white/8 p-6 shadow-2xl shadow-black/30">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#f4c16f]">{t.whyChoose.brands.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#d8b66a]">{t.whyChoose.brands.eyebrow}</p>
           <h3 className="mt-3 text-3xl font-black tracking-tight">{t.whyChoose.brands.h3}</h3>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {paintBrands.map((brand) => (
@@ -459,19 +459,19 @@ function InteriorSection() {
     <section id="interieur" className="bg-white px-4 py-16 text-neutral-950 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div className="rounded-[2rem] bg-neutral-950 p-6 text-white shadow-2xl shadow-neutral-950/20 lg:p-8">
-          <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-[#9f1d24] text-white">
+          <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-[#1f5c4d] text-white">
             <Brush className="h-8 w-8" />
           </div>
           <h2 className="mt-6 text-4xl font-black tracking-tight">{t.interior.h2}</h2>
           <p className="mt-4 text-lg leading-8 text-neutral-200">{t.interior.description}</p>
-          <a href={withLocale(locale, t.interior.href)} className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#9f1d24] px-7 py-4 font-black text-white">
+          <a href={withLocale(locale, t.interior.href)} className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#1f5c4d] px-7 py-4 font-black text-white">
             {t.interior.cta}
           </a>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {t.interior.processPoints.map((point) => (
             <div key={point} className="rounded-3xl border border-stone-200 bg-stone-50 p-5">
-              <CheckCircle2 className="h-6 w-6 text-[#9f1d24]" />
+              <CheckCircle2 className="h-6 w-6 text-[#1f5c4d]" />
               <p className="mt-4 font-bold leading-7 text-neutral-800">{point}</p>
             </div>
           ))}
@@ -490,7 +490,7 @@ function ExteriorSection() {
     <section id="exterieur" className="bg-[#1f1b18] px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#f4c16f]">{t.exterior.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#d8b66a]">{t.exterior.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.exterior.h2}</h2>
           <p className="mt-5 text-lg leading-8 text-neutral-200">{t.exterior.description}</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -499,7 +499,7 @@ function ExteriorSection() {
             ))}
           </div>
         </div>
-        <div className="rounded-[2rem] border border-[#f4c16f]/30 bg-[#9f1d24] p-7 text-white shadow-2xl shadow-black/30">
+        <div className="rounded-[2rem] border border-[#d8b66a]/30 bg-[#1f5c4d] p-7 text-white shadow-2xl shadow-black/30">
           <ShieldCheck className="h-12 w-12" />
           <h3 className="mt-5 text-3xl font-black tracking-tight">{t.exterior.card.h3}</h3>
           <p className="mt-3 text-lg font-semibold leading-8">{t.exterior.card.description}</p>
@@ -525,7 +525,7 @@ function ProjectsSection() {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#9f1d24]">{t.projects.eyebrow}</p>
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#1f5c4d]">{t.projects.eyebrow}</p>
             <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.projects.h2}</h2>
             <p className="mt-3 max-w-2xl text-lg text-neutral-300">{t.projects.description}</p>
           </div>
@@ -595,19 +595,19 @@ function PricingSection() {
   const blogLabel = locale === 'fr' ? 'Guide complet : coût pour repeindre une maison à Laval →' : locale === 'en' ? 'Full guide: house painting cost in Laval →' : 'Guía completa: costo de pintar una casa en Laval →'
 
   return (
-    <section className="bg-[#6f1118] px-4 py-16 text-white sm:px-6 lg:px-8">
+    <section className="bg-[#123a32] px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#f4c16f]">{t.pricing.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#d8b66a]">{t.pricing.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.pricing.h2}</h2>
           {t.pricing.paragraphs.map((p, i) => (
             <p key={i} className="mt-4 text-lg leading-8 text-neutral-200">{p}</p>
           ))}
-          <a href={withLocale(locale, SERVICE_PATHS[locale].blog)} className="mt-5 inline-flex items-center text-sm font-bold text-[#f4c16f] underline underline-offset-2 transition hover:text-white">
+          <a href={withLocale(locale, SERVICE_PATHS[locale].blog)} className="mt-5 inline-flex items-center text-sm font-bold text-[#d8b66a] underline underline-offset-2 transition hover:text-white">
             {blogLabel}
           </a>
         </div>
-        <div className="rounded-[2rem] border border-[#f4c16f]/30 bg-[#f7f1e8] p-7 text-[#1f1b18] shadow-2xl shadow-black/30">
+        <div className="rounded-[2rem] border border-[#d8b66a]/30 bg-[#f7f1e8] p-7 text-[#1f1b18] shadow-2xl shadow-black/30">
           <h3 className="text-3xl font-black tracking-tight">{t.pricing.card.h3}</h3>
           <p className="mt-4 text-lg font-semibold leading-8">{t.pricing.card.description}</p>
           <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-neutral-950 px-7 py-4 font-black text-white">
@@ -920,7 +920,7 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
 
 function MobileCallButton() {
   return (
-    <a href={PHONE_LINK} className="fixed bottom-4 left-4 right-4 z-50 flex items-center justify-center gap-3 rounded-full bg-[#9f1d24] px-6 py-4 text-base font-black text-white shadow-2xl shadow-black/40 sm:hidden">
+    <a href={PHONE_LINK} className="fixed bottom-4 left-4 right-4 z-50 flex items-center justify-center gap-3 rounded-full bg-[#1f5c4d] px-6 py-4 text-base font-black text-white shadow-2xl shadow-black/40 sm:hidden">
       <Phone className="h-5 w-5" />
       {PHONE_NUMBER}
     </a>
