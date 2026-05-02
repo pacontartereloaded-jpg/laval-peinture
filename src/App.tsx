@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import {
   Brush,
   CalendarCheck,
@@ -110,15 +110,16 @@ function Nav() {
   const t = useT()
   const locale = useLocale()
   const link = (path: string) => withLocale(locale, path)
+  const [localeOpen, setLocaleOpen] = useState(false)
 
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[#0284C7]/10 bg-[#F0F9FF]/88 text-[#0C4A6E] shadow-sm shadow-[#0C4A6E]/5 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <div className="flex w-full items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href={link('/')} className="flex items-center gap-3" aria-label={`${COMPANY_NAME} accueil`}>
           <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl">
             <img src="/logos/logo-light.png" alt="" className="h-full w-full object-contain" aria-hidden="true" />
           </span>
-          <span>
+          <span className="text-left">
             <span className="block text-lg font-black leading-none tracking-tight sm:text-xl">{COMPANY_NAME}</span>
             <span className="hidden text-[10px] font-bold uppercase tracking-[0.22em] text-[#0C4A6E] sm:block">{t.nav.subtitle}</span>
           </span>
@@ -134,15 +135,33 @@ function Nav() {
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
-            {LOCALES.map((l) => (
-              <a
-                key={l}
-                href={`/${l}/`}
-                className={`rounded-lg px-2 py-1 text-xs font-black uppercase transition ${locale === l ? 'bg-[#0284C7] text-white' : 'text-[#0C4A6E]/45 hover:text-[#0C4A6E]'}`}
-              >
-                {LOCALE_LABELS[l]}
-              </a>
-            ))}
+            <button
+              onClick={() => setLocaleOpen((o) => !o)}
+              className="rounded-lg bg-[#0284C7] px-2 py-1 text-xs font-black uppercase text-white transition"
+            >
+              {locale}
+            </button>
+            <AnimatePresence>
+              {localeOpen && (
+                <motion.div
+                  initial={{ opacity: 0, width: 0 }}
+                  animate={{ opacity: 1, width: 'auto' }}
+                  exit={{ opacity: 0, width: 0 }}
+                  transition={{ duration: 0.18 }}
+                  className="flex items-center gap-1 overflow-hidden"
+                >
+                  {LOCALES.filter((l) => l !== locale).map((l) => (
+                    <a
+                      key={l}
+                      href={`/${l}/`}
+                      className="rounded-lg px-2 py-1 text-xs font-black uppercase text-[#0C4A6E]/45 transition hover:text-[#0C4A6E]"
+                    >
+                      {LOCALE_LABELS[l]}
+                    </a>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
           <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="hidden items-center gap-2 rounded-full bg-[#0C4A6E] px-5 py-3 text-sm font-black !text-white shadow-xl shadow-[#0C4A6E]/30 transition hover:bg-[#075985] sm:flex">
             <PhoneCall className="h-4 w-4" />
@@ -235,6 +254,12 @@ function Hero() {
   const t = useT()
   const locale = useLocale()
   const sp = SERVICE_PATHS[locale]
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '40%'])
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+  const contentY = useTransform(scrollYProgress, [0, 0.6], ['0%', '-12%'])
+
   const heroLinks = ({
     fr: [
       { href: withLocale(locale, sp.interior), label: 'Peinture intérieure à Laval' },
@@ -254,11 +279,11 @@ function Hero() {
   } as const)[locale]
 
   return (
-    <section id="accueil" className="relative isolate overflow-hidden pb-16 text-white lg:pb-20">
-      <img src={HERO_IMAGE} alt="Peintre résidentiel travaillant dans une maison à Laval" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+    <section ref={ref} id="accueil" className="relative isolate overflow-hidden pb-16 text-white lg:pb-20">
+      <motion.img src={HERO_IMAGE} alt="Peintre résidentiel travaillant dans une maison à Laval" style={{ y: bgY }} className="absolute inset-0 -z-20 h-[120%] w-full object-cover object-center" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0C4A6E]/75 via-[#0C4A6E]/60 to-[#0C4A6E]/85" />
 
-      <div className="mx-auto max-w-4xl px-4 pt-32 text-center sm:px-6 lg:px-8 lg:pt-36">
+      <motion.div style={{ opacity: contentOpacity, y: contentY }} className="mx-auto max-w-4xl px-4 pt-32 text-center sm:px-6 lg:px-8 lg:pt-36">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-sm font-bold text-white shadow-2xl backdrop-blur">
           <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
           {t.hero.badge}
@@ -283,7 +308,7 @@ function Hero() {
         </motion.div>
         <HeroButtons />
         <PhoneBar />
-      </div>
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0, y: 16 }}
