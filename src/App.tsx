@@ -580,7 +580,7 @@ function ProjectsSection() {
         </div>
 
         <div className="mt-12 text-center">
-          <a href={PHONE_LINK} className="inline-flex items-center gap-3 rounded-full bg-[#0284C7] px-8 py-4 font-black text-white shadow-xl shadow-[#0C4A6E]/30 transition hover:bg-[#0C4A6E]">
+          <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="inline-flex items-center gap-3 rounded-full bg-[#0C4A6E] px-8 py-4 font-black !text-white shadow-xl shadow-[#0C4A6E]/30 transition hover:bg-[#075985]">
             <Phone className="h-5 w-5" />
             {t.projects.cta}
           </a>
@@ -611,7 +611,7 @@ function PricingSection() {
         <div className="rounded-[2rem] border border-white/20 bg-[#F0F9FF] p-7 text-[#0C4A6E] shadow-2xl shadow-[#0C4A6E]/30">
           <h3 className="text-3xl font-black tracking-tight">{t.pricing.card.h3}</h3>
           <p className="mt-4 text-lg font-semibold leading-8">{t.pricing.card.description}</p>
-          <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-[#0284C7] px-7 py-4 font-black text-white shadow-lg shadow-[#0284C7]/30 transition hover:bg-[#0C4A6E]">
+          <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-[#0C4A6E] px-7 py-4 font-black !text-white shadow-lg shadow-[#0C4A6E]/30 transition hover:bg-[#075985]">
             <Phone className="h-5 w-5" />
             {PHONE_NUMBER}
           </a>
@@ -1303,7 +1303,7 @@ function Footer() {
               </span>
               <span className="text-lg font-black text-white">{COMPANY_NAME}</span>
             </a>
-            <p className="text-sm leading-6 text-white/70">{content.tagline}</p>
+            <p className="text-sm leading-6 text-white">{content.tagline}</p>
             <a href={PHONE_LINK} className="mt-4 inline-flex items-center gap-2 font-black text-white transition hover:text-white">
               <Phone className="h-4 w-4" />
               {PHONE_NUMBER}
@@ -1314,7 +1314,7 @@ function Footer() {
             <ul className="space-y-2">
               {content.services.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm font-semibold text-white/80 transition hover:text-white">{link.label}</a>
+                  <a href={link.href} className="text-sm font-semibold text-white transition hover:text-white">{link.label}</a>
                 </li>
               ))}
             </ul>
@@ -1324,13 +1324,13 @@ function Footer() {
             <ul className="space-y-2">
               {content.areas.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm font-semibold text-white/80 transition hover:text-white">{link.label}</a>
+                  <a href={link.href} className="text-sm font-semibold text-white transition hover:text-white">{link.label}</a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/50">
+        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white">
           {content.copyright}
         </div>
       </div>
