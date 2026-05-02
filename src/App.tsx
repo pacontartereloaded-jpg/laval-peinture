@@ -116,7 +116,7 @@ function Nav() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href={link('/')} className="flex items-center gap-3" aria-label={`${COMPANY_NAME} accueil`}>
           <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl">
-            <img src="/logos/logo.png" alt="" className="h-full w-full object-contain" aria-hidden="true" />
+            <img src="/logos/logo-light.png" alt="" className="h-full w-full object-contain" aria-hidden="true" />
           </span>
           <span>
             <span className="block text-lg font-black leading-none tracking-tight sm:text-xl">{COMPANY_NAME}</span>
@@ -1299,7 +1299,7 @@ function Footer() {
           <div>
             <a href={withLocale(locale, '/')} className="mb-4 flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl">
-                <img src="/logos/logo.png" alt="" className="h-full w-full object-contain" aria-hidden="true" />
+                <img src="/logos/logo-light.png" alt="" className="h-full w-full object-contain" aria-hidden="true" />
               </span>
               <span className="text-lg font-black text-white">{COMPANY_NAME}</span>
             </a>
