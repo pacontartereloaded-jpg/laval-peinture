@@ -2,7 +2,24 @@ import { Resend } from 'resend'
 
 const CONTACT_EMAIL = 'soumission@peinturelaval.ca'
 
-export default async function handler(req: any, res: any) {
+type ContactRequest = {
+  method?: string
+  body?: {
+    name?: string
+    email?: string
+    phone?: string
+    projectType?: string
+    message?: string
+  }
+}
+
+type ContactResponse = {
+  status: (code: number) => {
+    json: (body: unknown) => void
+  }
+}
+
+export default async function handler(req: ContactRequest, res: ContactResponse) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' })
     return
