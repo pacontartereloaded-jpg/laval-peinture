@@ -53,7 +53,7 @@ const projectImages = [
 const paintBrands = [
   { name: 'Benjamin Moore', logo: '/logos/benjamin-moore.svg', imgCls: 'max-h-12 max-w-full object-contain' },
   { name: 'Sherwin-Williams', logo: '/logos/sherwin-williams.svg', imgCls: 'max-h-20 max-w-full object-contain' },
-  { name: 'Betonel', logo: '/logos/betonel.png', imgCls: 'max-h-20 max-w-full object-contain' },
+  { name: 'Betonel', logo: '/logos/betonel.png', imgCls: 'max-h-28 max-w-full object-contain' },
   { name: 'Peintures MF', logo: '/logos/mfpeinture.png', imgCls: 'max-h-20 max-w-full object-contain' },
   { name: 'Sico', logo: '/logos/sico.png', imgCls: 'max-h-12 max-w-full object-contain' },
 ]
