@@ -54,7 +54,8 @@ const paintBrands = [
   { name: 'Benjamin Moore', logo: '/logos/benjamin-moore.svg' },
   { name: 'Sherwin-Williams', logo: '/logos/sherwin-williams.svg' },
   { name: 'Betonel', logo: '/logos/betonel.png' },
-  { name: 'MFPEINTURE', logo: '/logos/mfpeinture.png' },
+  { name: 'Peintures MF', logo: '/logos/mfpeinture.png' },
+  { name: 'Sico', logo: '/logos/sico.png' },
 ]
 
 const LocaleCtx = createContext<Locale>('fr')
@@ -438,7 +439,7 @@ function WhyChooseSection() {
         <div className="rounded-[2rem] border border-white/15 bg-white/8 p-6 shadow-2xl shadow-[#0C4A6E]/30">
           <p className="text-sm font-black uppercase tracking-[0.22em] text-white">{t.whyChoose.brands.eyebrow}</p>
           <h3 className="mt-3 text-3xl font-black tracking-tight">{t.whyChoose.brands.h3}</h3>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {paintBrands.map((brand) => (
               <div key={brand.name} className="flex min-h-24 items-center justify-center rounded-3xl border border-white/10 bg-white px-5 shadow-xl shadow-[#0C4A6E]/20">
                 <img src={brand.logo} alt={brand.name} className="max-h-12 max-w-full object-contain" />
