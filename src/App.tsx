@@ -36,7 +36,7 @@ const SERVICE_PATHS: Record<Locale, { interior: string; exterior: string; quote:
 const COMPANY_NAME = 'Peinture Laval'
 const PHONE_NUMBER = '(450) 367-5637'
 const PHONE_LINK = 'tel:+14503675637'
-const HERO_IMAGE = '/realisations/hero-residential-painting-laval.png'
+const HERO_IMAGE = '/realisations/hero-bg-new.jpg'
 
 const projectImages = [
   { image: '/realisations/chomedey-interieur-before-after.png', fallback: '/realisations/chomedey-interieur-before-after.svg' },
@@ -254,30 +254,29 @@ function Hero() {
   } as const)[locale]
 
   return (
-    <section id="accueil" className="relative isolate overflow-hidden bg-[#F0F9FF] pb-16 text-[#0C4A6E] lg:pb-20">
-      <img src={HERO_IMAGE} alt="Peintre résidentiel travaillant dans une maison à Laval" className="absolute inset-0 -z-20 h-full w-full object-cover" />
-      <div className="absolute inset-0 -z-10 bg-[#F0F9FF]/82" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_25%,rgba(2,132,199,0.10),transparent_40%),linear-gradient(180deg,rgba(240,249,255,0.78),rgba(224,242,254,0.95))]" />
+    <section id="accueil" className="relative isolate overflow-hidden pb-16 text-white lg:pb-20">
+      <img src={HERO_IMAGE} alt="Peintre résidentiel travaillant dans une maison à Laval" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0C4A6E]/75 via-[#0C4A6E]/60 to-[#0C4A6E]/85" />
 
       <div className="mx-auto max-w-4xl px-4 pt-32 text-center sm:px-6 lg:px-8 lg:pt-36">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#0284C7]/20 bg-white/80 px-4 py-2 text-sm font-bold text-[#0C4A6E] shadow-2xl shadow-[#0C4A6E]/10 backdrop-blur">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-sm font-bold text-white shadow-2xl backdrop-blur">
           <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
           {t.hero.badge}
         </motion.div>
-        <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.08 }} className="text-5xl font-black leading-[0.9] tracking-[-0.06em] text-[#0C4A6E] sm:text-6xl lg:text-7xl">
+        <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.08 }} className="text-5xl font-black leading-[0.9] tracking-[-0.06em] text-white sm:text-6xl lg:text-7xl">
           {t.hero.h1}
-          <span className="mt-4 block text-3xl leading-none tracking-[-0.04em] text-[#0C4A6E] sm:text-4xl lg:text-5xl">
-            <motion.span className="inline-block rounded-3xl bg-[#0284C7]/10 px-2 py-1 ring-1 ring-[#0284C7]/25" animate={{ backgroundColor: ['rgba(2,132,199,0.06)', 'rgba(2,132,199,0.14)', 'rgba(2,132,199,0.06)'] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}>
+          <span className="mt-4 block text-3xl leading-none tracking-[-0.04em] text-white/90 sm:text-4xl lg:text-5xl">
+            <motion.span className="inline-block rounded-3xl bg-white/15 px-2 py-1 ring-1 ring-white/30 backdrop-blur-sm" animate={{ backgroundColor: ['rgba(255,255,255,0.10)', 'rgba(255,255,255,0.22)', 'rgba(255,255,255,0.10)'] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}>
               {t.hero.subheading}
             </motion.span>
           </span>
         </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.18 }} className="mx-auto mt-6 max-w-2xl text-lg font-semibold leading-8 text-[#0C4A6E] sm:text-xl">
+        <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.18 }} className="mx-auto mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/85 sm:text-xl">
           {t.hero.description}
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.24 }} className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2">
           {heroLinks.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-semibold text-[#0C4A6E] underline underline-offset-2 transition hover:text-[#0C4A6E]">
+            <a key={l.href} href={l.href} className="text-sm font-semibold text-white/80 underline underline-offset-2 transition hover:text-white">
               {l.label}
             </a>
           ))}
@@ -293,8 +292,8 @@ function Hero() {
         className="mx-auto mt-14 flex max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8"
       >
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#0284C7]/35 to-transparent" />
-        <p className="text-2xl font-black uppercase tracking-[0.18em] text-[#0C4A6E] sm:text-3xl">{t.hero.sliderLabel}</p>
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#0284C7]/35 to-transparent" />
+        <p className="text-2xl font-black uppercase tracking-[0.18em] text-white sm:text-3xl">{t.hero.sliderLabel}</p>
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/35 to-transparent" />
       </motion.div>
 
       <motion.div
@@ -308,8 +307,8 @@ function Hero() {
           transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
           className="flex flex-col items-center gap-1"
         >
-          <div className="h-5 w-px bg-[#0284C7]/60" />
-          <svg className="h-5 w-5 text-[#0C4A6E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <div className="h-5 w-px bg-white/60" />
+          <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>
@@ -333,11 +332,11 @@ function HeroButtons() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.28 }} className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-      <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0C4A6E] px-8 py-5 text-lg font-black !text-white shadow-2xl shadow-[#0C4A6E]/40 transition hover:-translate-y-0.5 hover:bg-[#075985]">
+      <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0284C7] px-8 py-5 text-lg font-black !text-white shadow-2xl shadow-black/30 transition hover:-translate-y-0.5 hover:bg-[#0369a1]">
         <PhoneCall className="h-6 w-6" />
         {t.hero.callButton}
       </a>
-      <a href={withLocale(locale, '/#contact')} className="inline-flex items-center justify-center rounded-full border-2 border-[#0284C7]/70 bg-white/70 px-8 py-5 text-lg font-black text-[#0C4A6E] backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#0C4A6E] hover:text-white">
+      <a href={withLocale(locale, '/#contact')} className="inline-flex items-center justify-center rounded-full border-2 border-white/60 bg-white/15 px-8 py-5 text-lg font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/25">
         {t.hero.quoteButton}
       </a>
     </motion.div>
@@ -346,26 +345,26 @@ function HeroButtons() {
 
 function PhoneBar() {
   return (
-    <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.36 }} className="mx-auto mt-8 max-w-2xl rounded-[2rem] border border-[#0284C7]/20 bg-white/86 p-5 shadow-2xl shadow-[#0C4A6E]/15 backdrop-blur-xl sm:p-6">
+    <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.36 }} className="mx-auto mt-8 max-w-2xl rounded-[2rem] border border-white/20 bg-white/12 p-5 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-6">
       <div className="flex flex-col items-center gap-2 text-center">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#0C4A6E]">Call us now:</p>
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-white/70">Call us now:</p>
           <div className="mt-1 flex items-center gap-3">
             <motion.div
               animate={{ rotate: [0, -18, 18, -14, 14, -8, 8, 0] }}
               transition={{ duration: 0.65, repeat: Infinity, repeatDelay: 3, ease: 'easeInOut' }}
               className="shrink-0"
             >
-              <PhoneCall className="h-8 w-8 text-[#0C4A6E] sm:h-10 sm:w-10 lg:h-11 lg:w-11" />
+              <PhoneCall className="h-8 w-8 text-white sm:h-10 sm:w-10 lg:h-11 lg:w-11" />
             </motion.div>
             <motion.a
               href={PHONE_LINK}
-              className="block whitespace-nowrap text-4xl font-black tracking-tight text-[#0C4A6E] sm:text-5xl lg:text-6xl"
+              className="block whitespace-nowrap text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl"
               animate={{
                 filter: [
-                  'drop-shadow(0 0 0px rgba(251,146,60,0))',
-                  'drop-shadow(0 0 14px rgba(251,146,60,0.65))',
-                  'drop-shadow(0 0 0px rgba(251,146,60,0))',
+                  'drop-shadow(0 0 0px rgba(255,255,255,0))',
+                  'drop-shadow(0 0 18px rgba(255,255,255,0.55))',
+                  'drop-shadow(0 0 0px rgba(255,255,255,0))',
                 ],
               }}
               transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 2.2, ease: 'easeInOut' }}
