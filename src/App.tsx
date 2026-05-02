@@ -610,7 +610,7 @@ function PricingSection() {
         <div className="rounded-[2rem] border border-white/20 bg-[#F0F9FF] p-7 text-[#0C4A6E] shadow-2xl shadow-[#0C4A6E]/30">
           <h3 className="text-3xl font-black tracking-tight">{t.pricing.card.h3}</h3>
           <p className="mt-4 text-lg font-semibold leading-8">{t.pricing.card.description}</p>
-          <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-4 font-black text-[#0C4A6E] shadow-lg shadow-black/15 transition hover:bg-[#F0F9FF]">
+          <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-[#0284C7] px-7 py-4 font-black text-white shadow-lg shadow-[#0284C7]/30 transition hover:bg-[#0C4A6E]">
             <Phone className="h-5 w-5" />
             {PHONE_NUMBER}
           </a>
