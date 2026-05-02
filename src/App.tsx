@@ -143,7 +143,7 @@ function Nav() {
               </a>
             ))}
           </div>
-          <a href={PHONE_LINK} className="hidden items-center gap-2 rounded-full bg-[#0284C7] px-5 py-3 text-sm font-black text-white shadow-xl shadow-[#0284C7]/25 transition hover:bg-[#0C4A6E] sm:flex">
+          <a href={PHONE_LINK} style={{ color: 'white' }} className="hidden items-center gap-2 rounded-full bg-[#0284C7] px-5 py-3 text-sm font-black text-white shadow-xl shadow-[#0284C7]/25 transition hover:bg-[#0C4A6E] sm:flex">
             <Phone className="h-4 w-4" />
             {t.nav.callNow}
           </a>
@@ -332,7 +332,7 @@ function HeroButtons() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.28 }} className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-      <a href={PHONE_LINK} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0284C7] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-[#0284C7]/30 transition hover:-translate-y-0.5 hover:bg-[#0C4A6E]">
+      <a href={PHONE_LINK} style={{ color: 'white' }} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0284C7] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-[#0284C7]/30 transition hover:-translate-y-0.5 hover:bg-[#0C4A6E]">
         <Phone className="h-6 w-6" />
         {t.hero.callButton}
       </a>
@@ -1302,7 +1302,7 @@ function Footer() {
               </span>
               <span className="text-lg font-black text-white">{COMPANY_NAME}</span>
             </a>
-            <p className="text-sm leading-6 text-neutral-400">{content.tagline}</p>
+            <p className="text-sm leading-6 text-white/70">{content.tagline}</p>
             <a href={PHONE_LINK} className="mt-4 inline-flex items-center gap-2 font-black text-white transition hover:text-white">
               <Phone className="h-4 w-4" />
               {PHONE_NUMBER}
@@ -1313,7 +1313,7 @@ function Footer() {
             <ul className="space-y-2">
               {content.services.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm font-semibold text-neutral-300 transition hover:text-white">{link.label}</a>
+                  <a href={link.href} className="text-sm font-semibold text-white/80 transition hover:text-white">{link.label}</a>
                 </li>
               ))}
             </ul>
@@ -1323,13 +1323,13 @@ function Footer() {
             <ul className="space-y-2">
               {content.areas.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm font-semibold text-neutral-300 transition hover:text-white">{link.label}</a>
+                  <a href={link.href} className="text-sm font-semibold text-white/80 transition hover:text-white">{link.label}</a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-neutral-500">
+        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/50">
           {content.copyright}
         </div>
       </div>
