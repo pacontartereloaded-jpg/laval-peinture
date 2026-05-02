@@ -90,7 +90,7 @@ function App() {
 
   return (
     <LocaleCtx.Provider value={locale}>
-      <main className="min-h-screen bg-[#F2F2F2] text-[#737373]">
+      <main className="min-h-screen bg-[#F2F2F2] text-[#26141E]">
         <Schema seoPage={seoPage} blogPost={blogPost} />
         <Nav />
         {blogPost ? <BlogPage post={blogPost} locale={locale} /> :
@@ -111,7 +111,7 @@ function Nav() {
   const link = (path: string) => withLocale(locale, path)
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[#737373]/10 bg-[#F2F2F2]/88 text-[#737373] shadow-sm shadow-black/5 backdrop-blur-xl">
+    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[#737373]/10 bg-[#F2F2F2]/88 text-[#26141E] shadow-sm shadow-black/5 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href={link('/')} className="flex items-center gap-3" aria-label={`${COMPANY_NAME} accueil`}>
           <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl">
@@ -119,17 +119,17 @@ function Nav() {
           </span>
           <span>
             <span className="block text-lg font-black leading-none tracking-tight sm:text-xl">{COMPANY_NAME}</span>
-            <span className="hidden text-[10px] font-bold uppercase tracking-[0.22em] text-[#737373] sm:block">{t.nav.subtitle}</span>
+            <span className="hidden text-[10px] font-bold uppercase tracking-[0.22em] text-[#26141E] sm:block">{t.nav.subtitle}</span>
           </span>
         </a>
-        <div className="hidden items-center gap-6 text-sm font-semibold text-[#737373]/75 lg:flex">
-          <a className="transition hover:text-[#737373]" href={link('/')}>{t.nav.home}</a>
-          <a className="transition hover:text-[#737373]" href={link('/#services')}>{t.nav.services}</a>
-          <a className="transition hover:text-[#737373]" href={link(t.services.cards[0].href)}>{t.nav.interior}</a>
-          <a className="transition hover:text-[#737373]" href={link(t.services.cards[1].href)}>{t.nav.exterior}</a>
-          <a className="transition hover:text-[#737373]" href={link('/#realisations')}>{t.nav.projects}</a>
-          <a className="transition hover:text-[#737373]" href={link('/#avis')}>{t.nav.reviews}</a>
-          <a className="transition hover:text-[#737373]" href={link('/#contact')}>{t.nav.contact}</a>
+        <div className="hidden items-center gap-6 text-sm font-semibold text-[#26141E]/75 lg:flex">
+          <a className="transition hover:text-[#26141E]" href={link('/')}>{t.nav.home}</a>
+          <a className="transition hover:text-[#26141E]" href={link('/#services')}>{t.nav.services}</a>
+          <a className="transition hover:text-[#26141E]" href={link(t.services.cards[0].href)}>{t.nav.interior}</a>
+          <a className="transition hover:text-[#26141E]" href={link(t.services.cards[1].href)}>{t.nav.exterior}</a>
+          <a className="transition hover:text-[#26141E]" href={link('/#realisations')}>{t.nav.projects}</a>
+          <a className="transition hover:text-[#26141E]" href={link('/#avis')}>{t.nav.reviews}</a>
+          <a className="transition hover:text-[#26141E]" href={link('/#contact')}>{t.nav.contact}</a>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
@@ -137,7 +137,7 @@ function Nav() {
               <a
                 key={l}
                 href={`/${l}/`}
-                className={`rounded-lg px-2 py-1 text-xs font-black uppercase transition ${locale === l ? 'bg-[#737373] text-white' : 'text-[#737373]/45 hover:text-[#737373]'}`}
+                className={`rounded-lg px-2 py-1 text-xs font-black uppercase transition ${locale === l ? 'bg-[#737373] text-white' : 'text-[#26141E]/45 hover:text-[#26141E]'}`}
               >
                 {LOCALE_LABELS[l]}
               </a>
@@ -253,7 +253,7 @@ function Hero() {
   } as const)[locale]
 
   return (
-    <section id="accueil" className="relative isolate overflow-hidden bg-[#F2F2F2] pb-16 text-[#737373] lg:pb-20">
+    <section id="accueil" className="relative isolate overflow-hidden bg-[#F2F2F2] pb-16 text-[#26141E] lg:pb-20">
       <img src={HERO_IMAGE} alt="Peintre résidentiel travaillant dans une maison à Laval" className="absolute inset-0 -z-20 h-full w-full object-cover" />
       <div className="absolute inset-0 -z-10 bg-[#F2F2F2]/82" />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_25%,rgba(38,20,30,0.18),transparent_40%),linear-gradient(180deg,rgba(255,253,248,0.72),rgba(247,241,232,0.96))]" />
@@ -263,9 +263,9 @@ function Hero() {
           <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
           {t.hero.badge}
         </motion.div>
-        <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.08 }} className="text-5xl font-black leading-[0.9] tracking-[-0.06em] text-[#737373] sm:text-6xl lg:text-7xl">
+        <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.08 }} className="text-5xl font-black leading-[0.9] tracking-[-0.06em] text-[#26141E] sm:text-6xl lg:text-7xl">
           {t.hero.h1}
-          <span className="mt-4 block text-3xl leading-none tracking-[-0.04em] text-[#737373] sm:text-4xl lg:text-5xl">
+          <span className="mt-4 block text-3xl leading-none tracking-[-0.04em] text-[#26141E] sm:text-4xl lg:text-5xl">
             <motion.span className="inline-block rounded-3xl bg-[#737373]/10 px-2 py-1 ring-1 ring-[#737373]/25" animate={{ backgroundColor: ['rgba(38,20,30,0.08)', 'rgba(38,20,30,0.15)', 'rgba(38,20,30,0.08)'] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}>
               {t.hero.subheading}
             </motion.span>
@@ -276,7 +276,7 @@ function Hero() {
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.24 }} className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2">
           {heroLinks.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-semibold text-[#737373] underline underline-offset-2 transition hover:text-[#26141E]">
+            <a key={l.href} href={l.href} className="text-sm font-semibold text-[#26141E] underline underline-offset-2 transition hover:text-[#26141E]">
               {l.label}
             </a>
           ))}
@@ -292,7 +292,7 @@ function Hero() {
         className="mx-auto mt-14 flex max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8"
       >
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#737373]/35 to-transparent" />
-        <p className="text-2xl font-black uppercase tracking-[0.18em] text-[#737373] sm:text-3xl">{t.hero.sliderLabel}</p>
+        <p className="text-2xl font-black uppercase tracking-[0.18em] text-[#26141E] sm:text-3xl">{t.hero.sliderLabel}</p>
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#737373]/35 to-transparent" />
       </motion.div>
 
@@ -308,7 +308,7 @@ function Hero() {
           className="flex flex-col items-center gap-1"
         >
           <div className="h-5 w-px bg-[#737373]/60" />
-          <svg className="h-5 w-5 text-[#737373]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <svg className="h-5 w-5 text-[#26141E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>
@@ -348,18 +348,18 @@ function PhoneBar() {
     <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.36 }} className="mx-auto mt-8 max-w-2xl rounded-[2rem] border border-[#737373]/20 bg-white/86 p-5 shadow-2xl shadow-black/15 backdrop-blur-xl sm:p-6">
       <div className="flex flex-col items-center gap-2 text-center">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#737373]">Call us now:</p>
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#26141E]">Call us now:</p>
           <div className="mt-1 flex items-center gap-3">
             <motion.div
               animate={{ rotate: [0, -18, 18, -14, 14, -8, 8, 0] }}
               transition={{ duration: 0.65, repeat: Infinity, repeatDelay: 3, ease: 'easeInOut' }}
               className="shrink-0"
             >
-              <Phone className="h-8 w-8 text-[#737373] sm:h-10 sm:w-10 lg:h-11 lg:w-11" />
+              <Phone className="h-8 w-8 text-[#26141E] sm:h-10 sm:w-10 lg:h-11 lg:w-11" />
             </motion.div>
             <motion.a
               href={PHONE_LINK}
-              className="block whitespace-nowrap text-4xl font-black tracking-tight text-[#737373] sm:text-5xl lg:text-6xl"
+              className="block whitespace-nowrap text-4xl font-black tracking-tight text-[#26141E] sm:text-5xl lg:text-6xl"
               animate={{
                 filter: [
                   'drop-shadow(0 0 0px rgba(38,20,30,0))',
@@ -393,7 +393,7 @@ function ServicesSection() {
           ))}
         </div>
         <div className="mt-12 max-w-3xl">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#737373]">{t.services.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#26141E]">{t.services.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.services.h2}</h2>
           <p className="mt-4 text-lg leading-8 text-neutral-700">{t.services.description}</p>
         </div>
@@ -471,7 +471,7 @@ function InteriorSection() {
         <div className="grid gap-4 sm:grid-cols-2">
           {t.interior.processPoints.map((point) => (
             <div key={point} className="rounded-3xl border border-[#D9D9D9] bg-[#F2F2F2] p-5">
-              <CheckCircle2 className="h-6 w-6 text-[#737373]" />
+              <CheckCircle2 className="h-6 w-6 text-[#26141E]" />
               <p className="mt-4 font-bold leading-7 text-neutral-800">{point}</p>
             </div>
           ))}
@@ -521,11 +521,11 @@ function ProjectsSection() {
   const typeLabel = (key: 'interior' | 'exterior') => key === 'interior' ? t.projects.typeInterior : t.projects.typeExterior
 
   return (
-    <section id="realisations" className="bg-[#F2F2F2] px-4 py-20 text-[#737373] sm:px-6 lg:px-8">
+    <section id="realisations" className="bg-[#F2F2F2] px-4 py-20 text-[#26141E] sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#737373]">{t.projects.eyebrow}</p>
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#26141E]">{t.projects.eyebrow}</p>
             <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.projects.h2}</h2>
             <p className="mt-3 max-w-2xl text-lg text-[#26141E]">{t.projects.description}</p>
           </div>
@@ -607,7 +607,7 @@ function PricingSection() {
             {blogLabel}
           </a>
         </div>
-        <div className="rounded-[2rem] border border-[#A6A6A6]/30 bg-[#F2F2F2] p-7 text-[#737373] shadow-2xl shadow-black/30">
+        <div className="rounded-[2rem] border border-[#A6A6A6]/30 bg-[#F2F2F2] p-7 text-[#26141E] shadow-2xl shadow-black/30">
           <h3 className="text-3xl font-black tracking-tight">{t.pricing.card.h3}</h3>
           <p className="mt-4 text-lg font-semibold leading-8">{t.pricing.card.description}</p>
           <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-neutral-950 px-7 py-4 font-black text-white">
@@ -630,8 +630,8 @@ function ReviewsSection() {
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {t.reviews.items.map((review) => (
             <article key={review.name} className="rounded-[2rem] border border-[#D9D9D9] bg-[#F2F2F2] p-6 shadow-xl shadow-stone-900/5">
-              <Quote className="h-8 w-8 text-[#737373]" />
-              <div className="mt-4 flex text-[#737373]" aria-label="5 stars">
+              <Quote className="h-8 w-8 text-[#26141E]" />
+              <div className="mt-4 flex text-[#26141E]" aria-label="5 stars">
                 {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
               </div>
               <p className="mt-4 text-lg font-semibold leading-8">"{review.text}"</p>
@@ -683,7 +683,7 @@ function FaqSection() {
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <span className="text-sm font-black text-neutral-500">{seeAlsoLabel}</span>
           {faqLinks.map((link) => (
-            <a key={link.href} href={link.href} className="rounded-full border border-[#D9D9D9] bg-white px-4 py-2 text-sm font-bold text-[#737373] shadow-sm transition hover:bg-slate-50">
+            <a key={link.href} href={link.href} className="rounded-full border border-[#D9D9D9] bg-white px-4 py-2 text-sm font-bold text-[#26141E] shadow-sm transition hover:bg-slate-50">
               {link.label}
             </a>
           ))}
@@ -912,7 +912,7 @@ function SoumissionPage({ page }: { page: SeoPageDef }) {
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#737373]">{eyebrow}</p>
+      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#26141E]">{eyebrow}</p>
       <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{title}</h2>
     </div>
   )
@@ -1079,7 +1079,7 @@ function RichServicePageComponent({ page, locale }: { page: RichServicePageData;
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {page.steps.map((step) => (
               <div key={step.num} className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
-                <span className="text-4xl font-black text-[#737373]">{step.num}</span>
+                <span className="text-4xl font-black text-[#26141E]">{step.num}</span>
                 <h3 className="mt-3 text-lg font-black">{step.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-neutral-400">{step.body}</p>
               </div>
