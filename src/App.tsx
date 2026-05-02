@@ -550,7 +550,7 @@ function ProjectsSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
-              className="group rounded-[2rem] bg-[#0C4A6E] shadow-2xl shadow-[#0C4A6E]/40 [transform:translateZ(0)]"
+              className="group rounded-[2rem] bg-[#0C4A6E] text-white shadow-2xl shadow-[#0C4A6E]/40 [transform:translateZ(0)]"
             >
               <div className="relative aspect-[16/9] overflow-hidden rounded-t-[2rem] bg-gradient-to-br from-[#0C4A6E] via-[#075985] to-[#0C4A6E]">
                 <img
@@ -572,7 +572,7 @@ function ProjectsSection() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-black tracking-tight">{project.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-neutral-400">{project.description}</p>
+                <p className="mt-2 text-sm leading-6 text-white/70">{project.description}</p>
               </div>
             </motion.div>
           ))}
@@ -727,7 +727,7 @@ function ContactSection() {
                 <p className="mt-3 font-black">{t.contact.quote}</p>
               </div>
             </div>
-            <a href={PHONE_LINK} className="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-8 py-5 text-lg font-black text-[#0C4A6E] shadow-2xl shadow-black/20 transition hover:bg-[#F0F9FF]">
+            <a href={PHONE_LINK} className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#0284C7] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-black/20 transition hover:bg-[#0C4A6E]">
               <Phone className="h-6 w-6" />
               {PHONE_NUMBER}
             </a>
