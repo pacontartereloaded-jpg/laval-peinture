@@ -7,7 +7,7 @@ import {
   Clock,
   Home,
   MapPin,
-  Phone,
+  PhoneCall,
   Quote,
   ShieldCheck,
   Star,
@@ -145,7 +145,7 @@ function Nav() {
             ))}
           </div>
           <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="hidden items-center gap-2 rounded-full bg-[#0C4A6E] px-5 py-3 text-sm font-black !text-white shadow-xl shadow-[#0C4A6E]/30 transition hover:bg-[#075985] sm:flex">
-            <Phone className="h-4 w-4" />
+            <PhoneCall className="h-4 w-4" />
             {t.nav.callNow}
           </a>
         </div>
@@ -334,7 +334,7 @@ function HeroButtons() {
   return (
     <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.28 }} className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
       <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0C4A6E] px-8 py-5 text-lg font-black !text-white shadow-2xl shadow-[#0C4A6E]/40 transition hover:-translate-y-0.5 hover:bg-[#075985]">
-        <Phone className="h-6 w-6" />
+        <PhoneCall className="h-6 w-6" />
         {t.hero.callButton}
       </a>
       <a href={withLocale(locale, '/#contact')} className="inline-flex items-center justify-center rounded-full border-2 border-[#0284C7]/70 bg-white/70 px-8 py-5 text-lg font-black text-[#0C4A6E] backdrop-blur transition hover:-translate-y-0.5 hover:bg-[#0C4A6E] hover:text-white">
@@ -356,7 +356,7 @@ function PhoneBar() {
               transition={{ duration: 0.65, repeat: Infinity, repeatDelay: 3, ease: 'easeInOut' }}
               className="shrink-0"
             >
-              <Phone className="h-8 w-8 text-[#0C4A6E] sm:h-10 sm:w-10 lg:h-11 lg:w-11" />
+              <PhoneCall className="h-8 w-8 text-[#0C4A6E] sm:h-10 sm:w-10 lg:h-11 lg:w-11" />
             </motion.div>
             <motion.a
               href={PHONE_LINK}
@@ -581,7 +581,7 @@ function ProjectsSection() {
 
         <div className="mt-12 text-center">
           <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="inline-flex items-center gap-3 rounded-full bg-[#0C4A6E] px-8 py-4 font-black !text-white shadow-xl shadow-[#0C4A6E]/30 transition hover:bg-[#075985]">
-            <Phone className="h-5 w-5" />
+            <PhoneCall className="h-5 w-5" />
             {t.projects.cta}
           </a>
         </div>
@@ -612,7 +612,7 @@ function PricingSection() {
           <h3 className="text-3xl font-black tracking-tight">{t.pricing.card.h3}</h3>
           <p className="mt-4 text-lg font-semibold leading-8">{t.pricing.card.description}</p>
           <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-[#0C4A6E] px-7 py-4 font-black !text-white shadow-lg shadow-[#0C4A6E]/30 transition hover:bg-[#075985]">
-            <Phone className="h-5 w-5" />
+            <PhoneCall className="h-5 w-5" />
             {PHONE_NUMBER}
           </a>
         </div>
@@ -729,7 +729,7 @@ function ContactSection() {
               </div>
             </div>
             <a href={PHONE_LINK} className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#0284C7] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-black/20 transition hover:bg-[#0C4A6E]">
-              <Phone className="h-6 w-6" />
+              <PhoneCall className="h-6 w-6" />
               {PHONE_NUMBER}
             </a>
           </div>
@@ -922,7 +922,7 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
 function MobileCallButton() {
   return (
     <a href={PHONE_LINK} className="fixed bottom-4 left-4 right-4 z-50 flex items-center justify-center gap-3 rounded-full bg-[#0284C7] px-6 py-4 text-base font-black text-white shadow-2xl shadow-[#0C4A6E]/40 sm:hidden">
-      <Phone className="h-5 w-5" />
+      <PhoneCall className="h-5 w-5" />
       {PHONE_NUMBER}
     </a>
   )
@@ -1305,7 +1305,7 @@ function Footer() {
             </a>
             <p className="text-sm leading-6 text-white">{content.tagline}</p>
             <a href={PHONE_LINK} className="mt-4 inline-flex items-center gap-2 font-black text-white transition hover:text-white">
-              <Phone className="h-4 w-4" />
+              <PhoneCall className="h-4 w-4" />
               {PHONE_NUMBER}
             </a>
           </div>
