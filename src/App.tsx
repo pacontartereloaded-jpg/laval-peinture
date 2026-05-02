@@ -51,11 +51,11 @@ const projectImages = [
 ]
 
 const paintBrands = [
-  { name: 'Benjamin Moore', logo: '/logos/benjamin-moore.svg' },
-  { name: 'Sherwin-Williams', logo: '/logos/sherwin-williams.svg' },
-  { name: 'Betonel', logo: '/logos/betonel.png' },
-  { name: 'Peintures MF', logo: '/logos/mfpeinture.png' },
-  { name: 'Sico', logo: '/logos/sico.png' },
+  { name: 'Benjamin Moore', logo: '/logos/benjamin-moore.svg', imgCls: 'max-h-12 max-w-full object-contain' },
+  { name: 'Sherwin-Williams', logo: '/logos/sherwin-williams.svg', imgCls: 'max-h-20 max-w-full object-contain' },
+  { name: 'Betonel', logo: '/logos/betonel.png', imgCls: 'max-h-20 max-w-full object-contain' },
+  { name: 'Peintures MF', logo: '/logos/mfpeinture.png', imgCls: 'max-h-20 max-w-full object-contain' },
+  { name: 'Sico', logo: '/logos/sico.png', imgCls: 'max-h-12 max-w-full object-contain' },
 ]
 
 const LocaleCtx = createContext<Locale>('fr')
@@ -442,7 +442,7 @@ function WhyChooseSection() {
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {paintBrands.map((brand) => (
               <div key={brand.name} className="flex min-h-24 items-center justify-center rounded-3xl border border-white/10 bg-white px-5 shadow-xl shadow-[#0C4A6E]/20">
-                <img src={brand.logo} alt={brand.name} className="max-h-12 max-w-full object-contain" />
+                <img src={brand.logo} alt={brand.name} className={brand.imgCls} />
               </div>
             ))}
           </div>
