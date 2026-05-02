@@ -423,20 +423,20 @@ function WhyChooseSection() {
     <section className="bg-[#0C4A6E] px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#FB923C]">{t.whyChoose.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white">{t.whyChoose.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.whyChoose.h2}</h2>
           <p className="mt-5 text-lg leading-8 text-neutral-200">{t.whyChoose.description}</p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {t.whyChoose.items.map((item) => (
               <div key={item} className="flex items-center gap-3 rounded-3xl border border-white/10 bg-white/10 p-4 font-black backdrop-blur">
-                <CheckCircle2 className="h-6 w-6 shrink-0 text-[#FB923C]" />
+                <CheckCircle2 className="h-6 w-6 shrink-0 text-white" />
                 {item}
               </div>
             ))}
           </div>
         </div>
         <div className="rounded-[2rem] border border-white/15 bg-white/8 p-6 shadow-2xl shadow-[#0C4A6E]/30">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#FB923C]">{t.whyChoose.brands.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white">{t.whyChoose.brands.eyebrow}</p>
           <h3 className="mt-3 text-3xl font-black tracking-tight">{t.whyChoose.brands.h3}</h3>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {paintBrands.map((brand) => (
@@ -490,7 +490,7 @@ function ExteriorSection() {
     <section id="exterieur" className="bg-[#0C4A6E] px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#FB923C]">{t.exterior.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white">{t.exterior.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.exterior.h2}</h2>
           <p className="mt-5 text-lg leading-8 text-neutral-200">{t.exterior.description}</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -499,11 +499,11 @@ function ExteriorSection() {
             ))}
           </div>
         </div>
-        <div className="rounded-[2rem] border border-[#FB923C]/30 bg-white/8 p-7 text-white shadow-2xl shadow-[#0C4A6E]/30 backdrop-blur">
+        <div className="rounded-[2rem] border border-white/20 bg-white/8 p-7 text-white shadow-2xl shadow-[#0C4A6E]/30 backdrop-blur">
           <ShieldCheck className="h-12 w-12" />
           <h3 className="mt-5 text-3xl font-black tracking-tight">{t.exterior.card.h3}</h3>
           <p className="mt-3 text-lg font-semibold leading-8">{t.exterior.card.description}</p>
-          <a href={withLocale(locale, SERVICE_PATHS[locale].exterior)} className="mt-5 inline-flex items-center font-black text-white underline underline-offset-2 transition hover:text-[#FB923C]">
+          <a href={withLocale(locale, SERVICE_PATHS[locale].exterior)} className="mt-5 inline-flex items-center font-black text-white underline underline-offset-2 transition hover:text-white">
             {extCta}
           </a>
         </div>
@@ -598,19 +598,19 @@ function PricingSection() {
     <section className="bg-[#0C4A6E] px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#FB923C]">{t.pricing.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white">{t.pricing.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">{t.pricing.h2}</h2>
           {t.pricing.paragraphs.map((p, i) => (
             <p key={i} className="mt-4 text-lg leading-8 text-neutral-200">{p}</p>
           ))}
-          <a href={withLocale(locale, SERVICE_PATHS[locale].blog)} className="mt-5 inline-flex items-center text-sm font-bold text-[#FB923C] underline underline-offset-2 transition hover:text-white">
+          <a href={withLocale(locale, SERVICE_PATHS[locale].blog)} className="mt-5 inline-flex items-center text-sm font-bold text-white underline underline-offset-2 transition hover:text-white">
             {blogLabel}
           </a>
         </div>
-        <div className="rounded-[2rem] border border-[#FB923C]/30 bg-[#F0F9FF] p-7 text-[#0C4A6E] shadow-2xl shadow-[#0C4A6E]/30">
+        <div className="rounded-[2rem] border border-white/20 bg-[#F0F9FF] p-7 text-[#0C4A6E] shadow-2xl shadow-[#0C4A6E]/30">
           <h3 className="text-3xl font-black tracking-tight">{t.pricing.card.h3}</h3>
           <p className="mt-4 text-lg font-semibold leading-8">{t.pricing.card.description}</p>
-          <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-[#FB923C] px-7 py-4 font-black text-white shadow-lg shadow-[#FB923C]/30 transition hover:bg-[#ea6c0a]">
+          <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-4 font-black text-[#0C4A6E] shadow-lg shadow-black/15 transition hover:bg-[#F0F9FF]">
             <Phone className="h-5 w-5" />
             {PHONE_NUMBER}
           </a>
@@ -704,7 +704,7 @@ function ContactSection() {
 
           {/* Info */}
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-[#FB923C]">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white">
               <MapPin className="h-4 w-4" />
               {t.contact.badge}
             </div>
@@ -719,15 +719,15 @@ function ContactSection() {
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="rounded-3xl bg-white/10 p-4">
-                <Clock className="h-6 w-6 text-[#FB923C]" />
+                <Clock className="h-6 w-6 text-white" />
                 <p className="mt-3 font-black">{t.contact.response}</p>
               </div>
               <div className="rounded-3xl bg-white/10 p-4">
-                <CalendarCheck className="h-6 w-6 text-[#FB923C]" />
+                <CalendarCheck className="h-6 w-6 text-white" />
                 <p className="mt-3 font-black">{t.contact.quote}</p>
               </div>
             </div>
-            <a href={PHONE_LINK} className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#FB923C] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-[#FB923C]/30 transition hover:bg-[#ea6c0a]">
+            <a href={PHONE_LINK} className="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-8 py-5 text-lg font-black text-[#0C4A6E] shadow-2xl shadow-black/20 transition hover:bg-[#F0F9FF]">
               <Phone className="h-6 w-6" />
               {PHONE_NUMBER}
             </a>
@@ -771,8 +771,8 @@ function ContactForm() {
     }
   }
 
-  const inputCls = 'w-full rounded-2xl border border-white/15 bg-white/8 px-4 py-3 text-white placeholder-white/30 outline-none transition focus:border-[#FB923C] focus:ring-2 focus:ring-[#FB923C]/30'
-  const labelCls = 'mb-1.5 block text-sm font-bold text-[#FB923C]'
+  const inputCls = 'w-full rounded-2xl border border-white/15 bg-white/8 px-4 py-3 text-white placeholder-white/30 outline-none transition focus:border-white focus:ring-2 focus:ring-white/30'
+  const labelCls = 'mb-1.5 block text-sm font-bold text-white'
 
   if (status === 'success') {
     return (
@@ -787,7 +787,7 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-[#0C4A6E]/40 lg:p-8">
-      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#FB923C]">{f.eyebrow}</p>
+      <p className="text-sm font-black uppercase tracking-[0.22em] text-white">{f.eyebrow}</p>
       <h3 className="mt-2 text-2xl font-black tracking-tight">{f.h2}</h3>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -824,7 +824,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="mt-5 w-full rounded-full bg-[#FB923C] py-4 text-base font-black text-white shadow-xl shadow-[#FB923C]/25 transition hover:bg-[#ea6c0a] disabled:opacity-60"
+        className="mt-5 w-full rounded-full bg-white py-4 text-base font-black text-[#0C4A6E] shadow-xl shadow-black/10 transition hover:bg-[#F0F9FF] disabled:opacity-60"
       >
         {status === 'sending' ? f.submitting : f.submit}
       </button>
@@ -840,14 +840,14 @@ function SeoLandingPage({ page }: { page: SeoPageDef }) {
       <section className="bg-[#0C4A6E] px-4 pb-14 pt-32 text-white sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.42fr] lg:items-center">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#FB923C]">{page.eyebrow}</p>
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-white">{page.eyebrow}</p>
             <h1 className="mt-4 text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl">{page.h1}</h1>
             <p className="mt-6 max-w-3xl text-xl leading-9 text-neutral-200">{page.intro}</p>
             <HeroButtons />
             <PhoneBar />
           </div>
           <div className="rounded-[2rem] border border-[#0284C7]/30 bg-white/10 p-6 shadow-2xl shadow-[#0C4A6E]/40">
-            <ShieldCheck className="h-12 w-12 text-[#FB923C]" />
+            <ShieldCheck className="h-12 w-12 text-white" />
             <h2 className="mt-5 text-3xl font-black">{t.seoLanding.trustCard.h2}</h2>
             <p className="mt-3 leading-8 text-neutral-200">{t.seoLanding.trustCard.description}</p>
           </div>
@@ -879,7 +879,7 @@ function SoumissionPage({ page }: { page: SeoPageDef }) {
       <section className="bg-[#0C4A6E] px-4 pb-14 pt-32 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumb crumbs={[{ label: page.eyebrow }]} />
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#FB923C]">{page.eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-white">{page.eyebrow}</p>
           <h1 className="mt-4 max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl">{page.h1}</h1>
           <p className="mt-6 max-w-2xl text-xl leading-9 text-neutral-200">{page.intro}</p>
         </div>
@@ -894,7 +894,7 @@ function SoumissionPage({ page }: { page: SeoPageDef }) {
               </article>
             ))}
             <div className="rounded-[2rem] border border-[#0284C7]/30 bg-[#0C4A6E]/30 p-7">
-              <ShieldCheck className="h-10 w-10 text-[#FB923C]" />
+              <ShieldCheck className="h-10 w-10 text-white" />
               <h2 className="mt-4 text-2xl font-black">{t.seoLanding.trustCard.h2}</h2>
               <p className="mt-3 leading-8 text-neutral-200">{t.seoLanding.trustCard.description}</p>
               <PhoneBar />
@@ -969,13 +969,13 @@ function BlogPage({ post, locale }: { post: BlogPost; locale: string }) {
       <section className="bg-[#0C4A6E] px-4 pb-10 pt-32 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <Breadcrumb crumbs={[{ label: locale === 'fr' ? 'Guide de prix' : locale === 'en' ? 'Pricing guide' : 'Guía de precios' }]} />
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#FB923C]">Peinture Laval</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white">Peinture Laval</p>
           <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">{post.h1}</h1>
           <p className="mt-6 text-xl leading-9 text-neutral-300">{post.lead}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href={links.interior} className="rounded-full border border-[#0284C7]/40 px-4 py-2 text-sm font-bold text-[#FB923C] transition hover:bg-[#0C4A6E]/40">{ll.interior}</a>
-            <a href={links.exterior} className="rounded-full border border-[#0284C7]/40 px-4 py-2 text-sm font-bold text-[#FB923C] transition hover:bg-[#0C4A6E]/40">{ll.exterior}</a>
-            <a href={links.quote} className="rounded-full border border-[#0284C7]/40 px-4 py-2 text-sm font-bold text-[#FB923C] transition hover:bg-[#0C4A6E]/40">{ll.quote}</a>
+            <a href={links.interior} className="rounded-full border border-[#0284C7]/40 px-4 py-2 text-sm font-bold text-white transition hover:bg-[#0C4A6E]/40">{ll.interior}</a>
+            <a href={links.exterior} className="rounded-full border border-[#0284C7]/40 px-4 py-2 text-sm font-bold text-white transition hover:bg-[#0C4A6E]/40">{ll.exterior}</a>
+            <a href={links.quote} className="rounded-full border border-[#0284C7]/40 px-4 py-2 text-sm font-bold text-white transition hover:bg-[#0C4A6E]/40">{ll.quote}</a>
           </div>
         </div>
       </section>
@@ -994,7 +994,7 @@ function BlogPage({ post, locale }: { post: BlogPost; locale: string }) {
                 <ul className="mt-5 space-y-2">
                   {section.list.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-neutral-200">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#FB923C]" />
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-white" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -1057,7 +1057,7 @@ function RichServicePageComponent({ page, locale }: { page: RichServicePageData;
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.42fr] lg:items-center">
           <div>
             <Breadcrumb crumbs={[{ label: page.eyebrow }]} />
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#FB923C]">{page.eyebrow}</p>
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-white">{page.eyebrow}</p>
             <h1 className="mt-4 text-5xl font-black leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl">{page.h1}</h1>
             <p className="mt-6 max-w-2xl text-xl leading-9 text-neutral-200">{page.lead}</p>
             <HeroButtons />
@@ -1065,7 +1065,7 @@ function RichServicePageComponent({ page, locale }: { page: RichServicePageData;
           </div>
           <div className="space-y-3">
             {crossLinks.map((l) => (
-              <a key={l.href} href={l.href} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm font-bold text-[#FB923C] transition hover:bg-white/10">
+              <a key={l.href} href={l.href} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm font-bold text-white transition hover:bg-white/10">
                 <Brush className="h-4 w-4 shrink-0" />{l.label}
               </a>
             ))}
@@ -1167,7 +1167,7 @@ function Breadcrumb({ crumbs }: { crumbs: { label: string; href?: string }[] }) 
             <li key={i} className="flex items-center gap-1.5">
               {i > 0 && <span aria-hidden="true" className="text-neutral-700">›</span>}
               {crumb.href ? (
-                <a href={crumb.href} className="transition hover:text-[#FB923C]">{crumb.label}</a>
+                <a href={crumb.href} className="transition hover:text-white">{crumb.label}</a>
               ) : (
                 <span className="text-white">{crumb.label}</span>
               )}
@@ -1214,7 +1214,7 @@ function RelatedServices({ excludePath }: { excludePath: string }) {
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {links.map((link) => (
             <a key={link.href} href={link.href} className="group rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:border-[#0284C7]/40 hover:bg-white/10">
-              <p className="font-black text-white transition group-hover:text-[#FB923C]">{link.label}</p>
+              <p className="font-black text-white transition group-hover:text-white">{link.label}</p>
               <p className="mt-1 text-sm text-neutral-400">{link.desc}</p>
             </a>
           ))}
@@ -1303,13 +1303,13 @@ function Footer() {
               <span className="text-lg font-black text-white">{COMPANY_NAME}</span>
             </a>
             <p className="text-sm leading-6 text-neutral-400">{content.tagline}</p>
-            <a href={PHONE_LINK} className="mt-4 inline-flex items-center gap-2 font-black text-[#FB923C] transition hover:text-[#FB923C]">
+            <a href={PHONE_LINK} className="mt-4 inline-flex items-center gap-2 font-black text-white transition hover:text-white">
               <Phone className="h-4 w-4" />
               {PHONE_NUMBER}
             </a>
           </div>
           <div>
-            <h3 className="mb-4 text-xs font-black uppercase tracking-widest text-[#FB923C]">{content.servicesLabel}</h3>
+            <h3 className="mb-4 text-xs font-black uppercase tracking-widest text-white">{content.servicesLabel}</h3>
             <ul className="space-y-2">
               {content.services.map((link) => (
                 <li key={link.href}>
@@ -1319,7 +1319,7 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 text-xs font-black uppercase tracking-widest text-[#FB923C]">{content.areasLabel}</h3>
+            <h3 className="mb-4 text-xs font-black uppercase tracking-widest text-white">{content.areasLabel}</h3>
             <ul className="space-y-2">
               {content.areas.map((link) => (
                 <li key={link.href}>
