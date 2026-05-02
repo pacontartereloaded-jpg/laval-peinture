@@ -143,7 +143,7 @@ function Nav() {
               </a>
             ))}
           </div>
-          <a href={PHONE_LINK} style={{ color: 'white' }} className="hidden items-center gap-2 rounded-full bg-[#0284C7] px-5 py-3 text-sm font-black text-white shadow-xl shadow-[#0284C7]/25 transition hover:bg-[#0C4A6E] sm:flex">
+          <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="hidden items-center gap-2 rounded-full bg-[#0C4A6E] px-5 py-3 text-sm font-black !text-white shadow-xl shadow-[#0C4A6E]/30 transition hover:bg-[#075985] sm:flex">
             <Phone className="h-4 w-4" />
             {t.nav.callNow}
           </a>
@@ -332,7 +332,7 @@ function HeroButtons() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.28 }} className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-      <a href={PHONE_LINK} style={{ color: 'white' }} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0284C7] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-[#0284C7]/30 transition hover:-translate-y-0.5 hover:bg-[#0C4A6E]">
+      <a href={PHONE_LINK} style={{ color: '#ffffff' }} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0C4A6E] px-8 py-5 text-lg font-black !text-white shadow-2xl shadow-[#0C4A6E]/40 transition hover:-translate-y-0.5 hover:bg-[#075985]">
         <Phone className="h-6 w-6" />
         {t.hero.callButton}
       </a>
