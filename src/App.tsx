@@ -159,7 +159,7 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <section className="border-y border-[#0284C7]/20 bg-[#0284C7] px-4 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-white">
+      <section className="border-y border-[#0284C7]/20 bg-[#0C4A6E] px-4 py-3 text-center text-sm font-black uppercase tracking-[0.16em] text-white">
         {t.announcement}
       </section>
       <ServicesSection />
@@ -487,7 +487,7 @@ function ExteriorSection() {
   const extCta = locale === 'fr' ? 'En savoir plus sur la peinture extérieure →' : locale === 'en' ? 'Learn more about exterior painting →' : 'Saber más sobre pintura exterior →'
 
   return (
-    <section id="exterieur" className="bg-[#0284C7] px-4 py-16 text-white sm:px-6 lg:px-8">
+    <section id="exterieur" className="bg-[#0C4A6E] px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.22em] text-[#FB923C]">{t.exterior.eyebrow}</p>
@@ -499,7 +499,7 @@ function ExteriorSection() {
             ))}
           </div>
         </div>
-        <div className="rounded-[2rem] border border-[#FB923C]/30 bg-[#0284C7] p-7 text-white shadow-2xl shadow-[#0C4A6E]/30">
+        <div className="rounded-[2rem] border border-[#FB923C]/30 bg-white/8 p-7 text-white shadow-2xl shadow-[#0C4A6E]/30 backdrop-blur">
           <ShieldCheck className="h-12 w-12" />
           <h3 className="mt-5 text-3xl font-black tracking-tight">{t.exterior.card.h3}</h3>
           <p className="mt-3 text-lg font-semibold leading-8">{t.exterior.card.description}</p>
@@ -550,9 +550,9 @@ function ProjectsSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
-              className="group rounded-[2rem] bg-[#0284C7] shadow-2xl shadow-[#0C4A6E]/40 [transform:translateZ(0)]"
+              className="group rounded-[2rem] bg-[#0C4A6E] shadow-2xl shadow-[#0C4A6E]/40 [transform:translateZ(0)]"
             >
-              <div className="relative aspect-[16/9] overflow-hidden rounded-t-[2rem] bg-gradient-to-br from-[#0C4A6E] via-[#0C4A6E] to-[#0284C7]">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-t-[2rem] bg-gradient-to-br from-[#0C4A6E] via-[#075985] to-[#0C4A6E]">
                 <img
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   src={project.image}
@@ -610,7 +610,7 @@ function PricingSection() {
         <div className="rounded-[2rem] border border-[#FB923C]/30 bg-[#F0F9FF] p-7 text-[#0C4A6E] shadow-2xl shadow-[#0C4A6E]/30">
           <h3 className="text-3xl font-black tracking-tight">{t.pricing.card.h3}</h3>
           <p className="mt-4 text-lg font-semibold leading-8">{t.pricing.card.description}</p>
-          <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-[#0284C7] px-7 py-4 font-black text-white shadow-lg shadow-[#0284C7]/30 transition hover:bg-[#0C4A6E]">
+          <a href={PHONE_LINK} className="mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-[#FB923C] px-7 py-4 font-black text-white shadow-lg shadow-[#FB923C]/30 transition hover:bg-[#ea6c0a]">
             <Phone className="h-5 w-5" />
             {PHONE_NUMBER}
           </a>
@@ -727,7 +727,7 @@ function ContactSection() {
                 <p className="mt-3 font-black">{t.contact.quote}</p>
               </div>
             </div>
-            <a href={PHONE_LINK} className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#0284C7] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-[#0C4A6E]/25 transition hover:bg-[#0C4A6E]">
+            <a href={PHONE_LINK} className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#FB923C] px-8 py-5 text-lg font-black text-white shadow-2xl shadow-[#FB923C]/30 transition hover:bg-[#ea6c0a]">
               <Phone className="h-6 w-6" />
               {PHONE_NUMBER}
             </a>
@@ -805,7 +805,7 @@ function ContactForm() {
         </div>
         <div>
           <label className={labelCls}>{f.projectType.label}</label>
-          <select className={inputCls + ' bg-[#0284C7]'} value={form.projectType} onChange={set('projectType')}>
+          <select className={inputCls + ' bg-[#0C4A6E]'} value={form.projectType} onChange={set('projectType')}>
             <option value="">{f.projectType.placeholder}</option>
             {f.projectType.options.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
           </select>
@@ -824,7 +824,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="mt-5 w-full rounded-full bg-[#0284C7] py-4 text-base font-black text-white shadow-xl transition hover:bg-[#0C4A6E] disabled:opacity-60"
+        className="mt-5 w-full rounded-full bg-[#FB923C] py-4 text-base font-black text-white shadow-xl shadow-[#FB923C]/25 transition hover:bg-[#ea6c0a] disabled:opacity-60"
       >
         {status === 'sending' ? f.submitting : f.submit}
       </button>
@@ -1005,7 +1005,7 @@ function BlogPage({ post, locale }: { post: BlogPost; locale: string }) {
         </div>
       </article>
 
-      <section className="bg-[#0284C7] px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-[#0C4A6E] px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-black tracking-tight">FAQ</h2>
           <div className="mt-8 space-y-6">
@@ -1073,7 +1073,7 @@ function RichServicePageComponent({ page, locale }: { page: RichServicePageData;
         </div>
       </section>
 
-      <section className="bg-[#0284C7] px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-[#0C4A6E] px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-3xl font-black tracking-tight sm:text-4xl">{page.processHeading}</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -1113,7 +1113,7 @@ function RichServicePageComponent({ page, locale }: { page: RichServicePageData;
         </div>
       </section>
 
-      <section className="bg-[#0284C7] px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-[#0C4A6E] px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-3xl font-black tracking-tight sm:text-4xl">FAQ</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
