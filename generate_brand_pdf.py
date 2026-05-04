@@ -4,7 +4,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.colors import HexColor, white
 
 W, H = A4
-MARGIN = 22 * mm
+MARGIN = 10 * mm
 
 brands = [
     {
@@ -25,7 +25,7 @@ brands = [
             {'hex': '#FFFFFF', 'name': 'Blanc',           'role': 'Texte sur fond sombre'},
         ],
         'fonts': [
-            {'name': 'Inter',  'weights': '400 · 600 · 700 · 900', 'use': 'Tout le texte — titres, contacts, UI'},
+            {'name': 'Inter', 'weights': '400 · 600 · 700 · 900', 'use': 'Tout le texte — titres, contacts, UI'},
         ],
     },
     {
@@ -46,7 +46,7 @@ brands = [
             {'hex': '#D4E8A0', 'name': 'Vert Pale',       'role': 'Bordures'},
         ],
         'fonts': [
-            {'name': 'Inter',  'weights': '400 · 600 · 700 · 900', 'use': 'Tout le texte — titres, contacts, UI'},
+            {'name': 'Inter', 'weights': '400 · 600 · 700 · 900', 'use': 'Tout le texte — titres, contacts, UI'},
         ],
     },
     {
@@ -81,15 +81,15 @@ brands = [
         'front': 'E:/PEINTURE NOZA/card-front.png',
         'back':  'E:/PEINTURE NOZA/card-back.png',
         'colors': [
-            {'hex': '#0A0A0A', 'name': 'Obsidian',       'role': 'Fond carte frente'},
-            {'hex': '#111111', 'name': 'Charcoal',       'role': 'Fond carte reverso'},
-            {'hex': '#C9A96E', 'name': 'Or Premium',     'role': 'Logo / Accents / Icones'},
-            {'hex': '#E8D5A3', 'name': 'Or Clair',       'role': 'Hover / Degrade dore'},
-            {'hex': '#F5F0E8', 'name': 'Creme',          'role': 'Fond page / Texte clair'},
-            {'hex': '#D4CFC7', 'name': 'Creme Mute',     'role': 'Texte secondaire'},
+            {'hex': '#0A0A0A', 'name': 'Obsidian',   'role': 'Fond carte frente'},
+            {'hex': '#111111', 'name': 'Charcoal',   'role': 'Fond carte reverso'},
+            {'hex': '#C9A96E', 'name': 'Or Premium', 'role': 'Logo / Accents / Icones'},
+            {'hex': '#E8D5A3', 'name': 'Or Clair',   'role': 'Hover / Degrade dore'},
+            {'hex': '#F5F0E8', 'name': 'Creme',      'role': 'Fond page / Texte clair'},
+            {'hex': '#D4CFC7', 'name': 'Creme Mute', 'role': 'Texte secondaire'},
         ],
         'fonts': [
-            {'name': 'Playfair Display', 'weights': '400 · 600 · 700', 'use': 'Logo NOZA, titres luxe'},
+            {'name': 'Playfair Display', 'weights': '400 · 600 · 700',      'use': 'Logo NOZA, titres luxe'},
             {'name': 'Inter',            'weights': '300 · 400 · 500 · 600', 'use': 'Corps, contacts, taglines'},
         ],
     },
@@ -107,154 +107,152 @@ def is_dark(hex_color):
 
 
 def draw_rule(c, y, label, accent='#888888'):
-    c.setFont('Helvetica-Bold', 7.5)
+    c.setFont('Helvetica-Bold', 8.5)
     c.setFillColor(HexColor(accent))
     c.drawString(MARGIN, y, label.upper())
     c.setStrokeColor(HexColor('#dddddd'))
-    c.setLineWidth(0.5)
-    c.line(MARGIN, y - 2.5, W - MARGIN, y - 2.5)
+    c.setLineWidth(0.6)
+    c.line(MARGIN, y - 3, W - MARGIN, y - 3)
 
 
 def draw_brand_page(c, brand):
-    # Page background
     c.setFillColor(HexColor('#f7f7f7'))
     c.rect(0, 0, W, H, fill=1, stroke=0)
 
-    y = H - 18 * mm
+    y = H - 14 * mm
 
     # ── Header ──────────────────────────────────────────────
+    HDR = 26 * mm
     c.setFillColor(HexColor(brand['card_bg']))
-    c.roundRect(MARGIN, y - 20 * mm, W - 2 * MARGIN, 20 * mm, 6, fill=1, stroke=0)
-    # Accent strip
+    c.roundRect(MARGIN, y - HDR, W - 2 * MARGIN, HDR, 7, fill=1, stroke=0)
     c.setFillColor(HexColor(brand['accent']))
-    c.roundRect(MARGIN, y - 20 * mm, 5, 20 * mm, 2, fill=1, stroke=0)
+    c.roundRect(MARGIN, y - HDR, 6, HDR, 3, fill=1, stroke=0)
 
-    c.setFont('Helvetica-Bold', 16)
+    c.setFont('Helvetica-Bold', 19)
     c.setFillColor(white)
-    c.drawString(MARGIN + 9 * mm, y - 8 * mm, brand['name'])
-    c.setFont('Helvetica', 8)
+    c.drawString(MARGIN + 12 * mm, y - 10 * mm, brand['name'])
+    c.setFont('Helvetica', 9)
     c.setFillColor(HexColor(brand['accent']))
-    c.drawString(MARGIN + 9 * mm, y - 14 * mm, brand['website'] + '   |   ' + brand['phone'])
+    c.drawString(MARGIN + 12 * mm, y - 18 * mm, brand['website'] + '   |   ' + brand['phone'])
 
-    y -= 24 * mm
+    y -= HDR + 8 * mm
 
     # ── Real card previews ───────────────────────────────────
     draw_rule(c, y, 'Tarjetas de Negocio (capturas reales)', brand['accent'])
-    y -= 8 * mm
+    y -= 10 * mm
 
-    CARD_W = 85 * mm
-    CARD_H = 48.6 * mm
-    GAP = 8 * mm
+    # Fill page width minus margins: 2 cards + gap
+    CARD_W = (W - 2 * MARGIN - 6 * mm) / 2   # ≈ 92 mm each
+    CARD_H = CARD_W * (50.8 / 88.9)           # maintain 3.5" × 2" ratio ≈ 52.6 mm
+    GAP = 6 * mm
 
-    total = CARD_W * 2 + GAP
-    start_x = MARGIN + (W - 2 * MARGIN - total) / 2
+    start_x = MARGIN
 
-    # Front card
-    c.drawImage(brand['front'], start_x, y - CARD_H, width=CARD_W, height=CARD_H, preserveAspectRatio=False)
+    # Front
+    c.drawImage(brand['front'], start_x, y - CARD_H,
+                width=CARD_W, height=CARD_H, preserveAspectRatio=False)
     c.setStrokeColor(HexColor('#cccccc'))
     c.setLineWidth(0.4)
     c.roundRect(start_x, y - CARD_H, CARD_W, CARD_H, 3, fill=0, stroke=1)
-    c.setFont('Helvetica', 7)
+    c.setFont('Helvetica', 7.5)
     c.setFillColor(HexColor('#999999'))
-    c.drawCentredString(start_x + CARD_W / 2, y - CARD_H - 4 * mm, 'FRENTE')
+    c.drawCentredString(start_x + CARD_W / 2, y - CARD_H - 5 * mm, 'FRENTE')
 
-    # Back card
+    # Back
     bx = start_x + CARD_W + GAP
-    c.drawImage(brand['back'], bx, y - CARD_H, width=CARD_W, height=CARD_H, preserveAspectRatio=False)
+    c.drawImage(brand['back'], bx, y - CARD_H,
+                width=CARD_W, height=CARD_H, preserveAspectRatio=False)
     c.roundRect(bx, y - CARD_H, CARD_W, CARD_H, 3, fill=0, stroke=1)
-    c.drawCentredString(bx + CARD_W / 2, y - CARD_H - 4 * mm, 'REVERSO')
+    c.drawCentredString(bx + CARD_W / 2, y - CARD_H - 5 * mm, 'REVERSO')
 
-    # Dimension annotation under front card
-    c.setStrokeColor(HexColor('#aaaaaa'))
+    # Dimension annotation
+    c.setStrokeColor(HexColor('#bbbbbb'))
     c.setLineWidth(0.4)
-    ann_y = y - CARD_H - 8 * mm
+    ann_y = y - CARD_H - 10 * mm
     c.line(start_x, ann_y, start_x + CARD_W, ann_y)
-    c.line(start_x, ann_y + 1.5, start_x, ann_y - 1.5)
-    c.line(start_x + CARD_W, ann_y + 1.5, start_x + CARD_W, ann_y - 1.5)
-    c.setFont('Helvetica', 6.5)
-    c.setFillColor(HexColor('#aaaaaa'))
-    c.drawCentredString(start_x + CARD_W / 2, ann_y - 3.5 * mm, '88.9 mm  x  50.8 mm   (3.5" x 2")')
+    c.line(start_x, ann_y + 2, start_x, ann_y - 2)
+    c.line(start_x + CARD_W, ann_y + 2, start_x + CARD_W, ann_y - 2)
+    c.setFont('Helvetica', 7)
+    c.setFillColor(HexColor('#bbbbbb'))
+    c.drawCentredString(start_x + CARD_W / 2, ann_y - 4 * mm, '88.9 mm  ×  50.8 mm   (3.5" × 2")')
 
-    y -= CARD_H + 16 * mm
+    y -= CARD_H + 22 * mm
 
     # ── Color palette ────────────────────────────────────────
     draw_rule(c, y, 'Palette de Couleurs', brand['accent'])
-    y -= 9 * mm
+    y -= 11 * mm
 
     SW = (W - 2 * MARGIN - 5 * 4 * mm) / 6
-    SH = 16 * mm
+    SH = 26 * mm
 
     for i, color in enumerate(brand['colors']):
         sx = MARGIN + i * (SW + 4 * mm)
 
         c.setFillColor(HexColor(color['hex']))
-        c.roundRect(sx, y - SH, SW, SH, 4, fill=1, stroke=0)
+        c.roundRect(sx, y - SH, SW, SH, 5, fill=1, stroke=0)
         c.setStrokeColor(HexColor('#cccccc'))
         c.setLineWidth(0.4)
-        c.roundRect(sx, y - SH, SW, SH, 4, fill=0, stroke=1)
-
-        c.setFont('Helvetica-Bold', 6)
-        tc = white if is_dark(color['hex']) else HexColor('#222222')
-        c.setFillColor(tc)
-        c.drawCentredString(sx + SW / 2, y - SH / 2 - 2, color['hex'])
+        c.roundRect(sx, y - SH, SW, SH, 5, fill=0, stroke=1)
 
         c.setFont('Helvetica-Bold', 6.5)
+        tc = white if is_dark(color['hex']) else HexColor('#222222')
+        c.setFillColor(tc)
+        c.drawCentredString(sx + SW / 2, y - SH / 2 - 2.5, color['hex'])
+
+        c.setFont('Helvetica-Bold', 7)
         c.setFillColor(HexColor('#333333'))
         words = color['name'].split()
         line1 = words[0]
         line2 = ' '.join(words[1:]) if len(words) > 1 else ''
-        c.drawCentredString(sx + SW / 2, y - SH - 4 * mm, line1)
+        c.drawCentredString(sx + SW / 2, y - SH - 5 * mm, line1)
         if line2:
-            c.drawCentredString(sx + SW / 2, y - SH - 7 * mm, line2)
+            c.drawCentredString(sx + SW / 2, y - SH - 8.5 * mm, line2)
 
         r, g, b = hex_to_rgb(color['hex'])
-        c.setFont('Helvetica', 5.5)
+        c.setFont('Helvetica', 6)
         c.setFillColor(HexColor('#aaaaaa'))
-        c.drawCentredString(sx + SW / 2, y - SH - 10.5 * mm, 'RGB %d %d %d' % (r, g, b))
+        c.drawCentredString(sx + SW / 2, y - SH - 12 * mm, 'RGB %d %d %d' % (r, g, b))
 
-    y -= SH + 16 * mm
+    y -= SH + 22 * mm
 
     # ── Typography ───────────────────────────────────────────
     draw_rule(c, y, 'Typographie', brand['accent'])
-    y -= 8 * mm
+    y -= 10 * mm
 
-    font_row_h = 10 * mm
+    FONT_ROW = 15 * mm
     for font in brand['fonts']:
-        # accent dot
+        mid = y - FONT_ROW / 2
+
         c.setFillColor(HexColor(brand['accent']))
-        c.circle(MARGIN + 2 * mm, y - font_row_h / 2 + 1, 2, fill=1, stroke=0)
+        c.circle(MARGIN + 2.5 * mm, mid + 1.5, 2.5, fill=1, stroke=0)
 
-        # font name
-        c.setFont('Helvetica-Bold', 9)
+        c.setFont('Helvetica-Bold', 10)
         c.setFillColor(HexColor('#222222'))
-        c.drawString(MARGIN + 6 * mm, y - font_row_h / 2 + 2.5, font['name'])
+        c.drawString(MARGIN + 7 * mm, mid + 4, font['name'])
 
-        name_w = c.stringWidth(font['name'], 'Helvetica-Bold', 9)
+        name_w = c.stringWidth(font['name'], 'Helvetica-Bold', 10)
+        badge_x = MARGIN + 7 * mm + name_w + 4 * mm
+        badge_w = c.stringWidth(font['weights'], 'Helvetica', 7) + 8
+        c.setFillColor(HexColor('#e8e8e8'))
+        c.roundRect(badge_x, mid - 0.5, badge_w, 10, 3, fill=1, stroke=0)
+        c.setFont('Helvetica', 7)
+        c.setFillColor(HexColor('#555555'))
+        c.drawString(badge_x + 4, mid + 2.5, font['weights'])
 
-        # weights badge
-        badge_x = MARGIN + 6 * mm + name_w + 4 * mm
-        badge_w = c.stringWidth(font['weights'], 'Helvetica', 6.5) + 6
-        c.setFillColor(HexColor('#eeeeee'))
-        c.roundRect(badge_x, y - font_row_h / 2 - 1, badge_w, 9, 3, fill=1, stroke=0)
-        c.setFont('Helvetica', 6.5)
-        c.setFillColor(HexColor('#666666'))
-        c.drawString(badge_x + 3, y - font_row_h / 2 + 2, font['weights'])
-
-        # use description
-        c.setFont('Helvetica', 7.5)
+        c.setFont('Helvetica', 8)
         c.setFillColor(HexColor('#888888'))
-        c.drawString(MARGIN + 6 * mm, y - font_row_h / 2 - 4.5, font['use'])
+        c.drawString(MARGIN + 7 * mm, mid - 6, font['use'])
 
-        y -= font_row_h
+        y -= FONT_ROW
 
-    y -= 6 * mm
+    y -= 8 * mm
 
     # ── Specs ────────────────────────────────────────────────
     draw_rule(c, y, 'Specifications Techniques', brand['accent'])
-    y -= 7 * mm
+    y -= 8 * mm
 
     specs = [
-        ('Format',           '88.9 mm x 50.8 mm  (3.5" x 2")'),
+        ('Format',           '88.9 mm × 50.8 mm  (3.5" × 2")'),
         ('Resolution',       '300 DPI minimum'),
         ('Zone de securite', '3 mm marge interieure'),
         ('Fond perdu',       '3 mm autour'),
@@ -266,24 +264,25 @@ def draw_brand_page(c, brand):
         col = i % 2
         row = i // 2
         lx = MARGIN + 2 * mm if col == 0 else col2_x
-        ly = y - row * 5.5 * mm
-        c.setFont('Helvetica-Bold', 7.5)
+        ly = y - row * 6.5 * mm
+        c.setFont('Helvetica-Bold', 8)
         c.setFillColor(HexColor('#444444'))
         c.drawString(lx, ly, label + ':')
-        c.setFont('Helvetica', 7.5)
+        c.setFont('Helvetica', 8)
         c.setFillColor(HexColor('#666666'))
-        c.drawString(lx + 32 * mm, ly, val)
+        c.drawString(lx + 36 * mm, ly, val)
 
     # ── Footer ───────────────────────────────────────────────
     c.setStrokeColor(HexColor('#dddddd'))
     c.setLineWidth(0.5)
     c.line(MARGIN, 14 * mm, W - MARGIN, 14 * mm)
-    c.setFont('Helvetica', 6.5)
+    c.setFont('Helvetica', 7)
     c.setFillColor(HexColor('#bbbbbb'))
-    c.drawCentredString(W / 2, 10 * mm, brand['name'] + '  |  ' + brand['website'] + '  |  Palette de marque officielle')
+    c.drawCentredString(W / 2, 10 * mm,
+                        brand['name'] + '  |  ' + brand['website'] + '  |  Palette de marque officielle')
 
 
-c = canvas.Canvas('E:/Laval Peinture/public/brand-colors-v2.pdf', pagesize=A4)
+c = canvas.Canvas('E:/Laval Peinture/public/brand-colors-v3.pdf', pagesize=A4)
 c.setTitle('Palettes de Couleurs — Peinture Laval / Repentigny / Terrebonne / Noza')
 
 for brand in brands:
@@ -291,4 +290,4 @@ for brand in brands:
     c.showPage()
 
 c.save()
-print('PDF listo: E:/Laval Peinture/public/brand-colors-v2.pdf')
+print('PDF listo: E:/Laval Peinture/public/brand-colors-v3.pdf')
